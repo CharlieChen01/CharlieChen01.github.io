@@ -2,7 +2,7 @@
 # languageCode = 'en-us'
 # title = 'My New Hugo Site'
 
-baseURL: https://charliechen01.github.io
+baseURL: https://CharlieChen01.github.io
 languageCode: en-us
 defaultContentLanguage: en
 title: 👨‍🌾 Charlie Chen
@@ -16,7 +16,7 @@ params:
   # 评论系统
   comments: true
   commentsParams:
-    repo: charliechen01/charliechen01.github.io
+    repo: CharlieChen01/CharlieChen01.github.io
     repoId: R_kgDOG9Gq_Q
     category: Announcements
     categoryId: DIC_kwDOG9Gq_c4CO_p0
@@ -24,4 +24,4 @@ params:
     reactionsEnabled: 1
     emitMetadata: 1
     inputPosition: top
-    lang: zh-CN
+    lang: en-us

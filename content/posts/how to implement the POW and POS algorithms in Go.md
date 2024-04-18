@@ -178,7 +178,7 @@ How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blo
 
     import (
         "fmt"
-        "github.com/charliechen01/BlockchainBasic/blockchain"
+        "github.com/CharlieChen01/BlockchainBasic/blockchain"
     )
 
     func main() {
