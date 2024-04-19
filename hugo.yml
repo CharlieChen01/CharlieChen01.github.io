@@ -9,6 +9,28 @@ title: 👨‍🌾 Charlie Chen
 # 主题
 theme: PaperMod
 
+menu:
+  main:
+    - identifier: Archive
+      name: 📚 Archive
+      url: /archives/
+      weight: 10
+    - identifier: Tags
+      name: 🏷 Tags
+      url: /tags/
+      weight: 20
+    - identifier: Search
+      name: 🔍 Search
+      url: /search/
+      weight: 30
+
+# Search page
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
+    
 params:
   # 目录
   ShowToc: true
