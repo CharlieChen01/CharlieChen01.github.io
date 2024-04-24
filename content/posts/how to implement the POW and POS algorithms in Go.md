@@ -1,7 +1,8 @@
 +++
-title = 'How to Implement the POW and POS Algorithms in Go'
+title = 'How to Implement the PoW and PoS Algorithms in Go'
 date = 2024-04-18T14:47:03+08:00
 draft = false
+tags = ['PoW', 'PoS']
 +++
 
 How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blockchain in Go? Here are the steps:
