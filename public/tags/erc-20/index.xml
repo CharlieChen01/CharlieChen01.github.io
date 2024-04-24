@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>👨‍🌾 Charlie Chen</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on 👨‍🌾 Charlie Chen</description>
+    <title>ERC-20 on 👨‍🌾 Charlie Chen</title>
+    <link>http://localhost:1313/tags/erc-20/</link>
+    <description>Recent content in ERC-20 on 👨‍🌾 Charlie Chen</description>
     <generator>Hugo -- 0.124.1</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 24 Apr 2024 15:30:01 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/erc-20/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Differences Between ERC 20 and ERC 721</title>
       <link>http://localhost:1313/posts/differences-between-erc-20-and-erc-721/</link>
@@ -16,14 +16,6 @@
       <description>To understand the differences between ERC20 and ERC721, let’s delve into their characteristics:
 Fungibility vs. Non-Fungibility:
 ERC20 tokens are fungible. This means that each token is identical and interchangeable with any other token of the same type. For example, if you have an ERC20 token representing a cryptocurrency, one unit of that token is equivalent to any other unit of the same token. ERC721 tokens, on the other hand, are non-fungible.</description>
-    </item>
-    <item>
-      <title>How to Implement the POW and POS Algorithms in Go</title>
-      <link>http://localhost:1313/posts/how-to-implement-the-pow-and-pos-algorithms-in-go/</link>
-      <pubDate>Thu, 18 Apr 2024 14:47:03 +0800</pubDate>
-      <guid>http://localhost:1313/posts/how-to-implement-the-pow-and-pos-algorithms-in-go/</guid>
-      <description>How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blockchain in Go? Here are the steps: [toc]
-Define the block structure: Let’s start by creating a new Go project and importing all the necessary packages to build our blockchain. Create a file named blockchain.go and import all the dependencies you need by saving the following code in it. First, you need to define the data structure of the block, including the Index, Timestamp, PrevHash, Data, Nonce, Difficulty, and Hash.</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,46 @@
+baseURL = "https://CharlieChen01.github.io"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+title = "👨‍🌾 Charlie Chen"
+theme = "PaperMod"
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+[[menu.main]]
+identifier = "Archive"
+name = "📚 Archive"
+url = "/archives/"
+weight = 10
+
+[[menu.main]]
+identifier = "Tags"
+name = "🏷 Tags"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "Search"
+name = "🔍 Search"
+url = "/search/"
+weight = 30
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]
+
+[params]
+ShowToc = true
+TocOpen = true
+comments = true
+
+  [params.commentsParams]
+  repo = "CharlieChen01/CharlieChen01.github.io"
+  repoId = "R_kgDOLvuSMQ"
+  category = "Announcements"
+  categoryId = "DIC_kwDOLvuSMc4Cexr_"
+  mapping = "pathname"
+  reactionsEnabled = 1
+  emitMetadata = 1
+  inputPosition = "top"
+  lang = "en-us"
