@@ -3,7 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-04-24T15:30:01+08:00</lastmod>
+    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/modifier/</loc>
+    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/solidity/</loc>
+    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/the-solidity-indexed-modifier/</loc>
+    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/blockchain/</loc>
     <lastmod>2024-04-24T15:30:01+08:00</lastmod>
@@ -20,13 +35,13 @@
     <loc>http://localhost:1313/tags/erc-721/</loc>
     <lastmod>2024-04-24T15:30:01+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-04-24T15:30:01+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-04-24T15:30:01+08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/how-to-implement-the-pow-and-pos-algorithms-in-go/</loc>
+    <lastmod>2024-04-18T14:47:03+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pos/</loc>
+    <lastmod>2024-04-18T14:47:03+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pow/</loc>
     <lastmod>2024-04-18T14:47:03+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/archives/</loc>

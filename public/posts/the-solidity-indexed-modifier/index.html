@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>The Solidity Indexed Modifier | 👨‍🌾 Charlie Chen</title>
+<meta name="keywords" content="Modifier, Solidity">
+<meta name="description" content="In Solidity, the indexed modifier is used to declare parameters in events (event) and indicates that the value of the parameter should be indexed. The purpose of the indexed modifier is to create a searchable index for event parameters, allowing for more efficient filtering and retrieval of events. When a parameter is declared as indexed, the Solidity compiler creates an index for that parameter in the event log.
+Here are some key points about the indexed attribute in Solidity events:">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/the-solidity-indexed-modifier/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/the-solidity-indexed-modifier/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="👨‍🌾 Charlie Chen (Alt + H)">👨‍🌾 Charlie Chen</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives/" title="📚 Archive">
+                    <span>📚 Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="🏷 Tags">
+                    <span>🏷 Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 Search (Alt &#43; /)" accesskey=/>
+                    <span>🔍 Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      The Solidity Indexed Modifier
+    </h1>
+    <div class="post-meta"><span title='2024-04-26 16:16:37 +0800 CST'>April 26, 2024</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#using-indexed-in-event-definitions" aria-label="Using indexed in Event Definitions:">Using indexed in Event Definitions:</a></li>
+                <li>
+                    <a href="#filtering-events" aria-label="Filtering Events:">Filtering Events:</a></li>
+                <li>
+                    <a href="#%e5%ae%9a%e4%b9%89%e4%ba%8b%e4%bb%b6%e6%97%b6%e4%bd%bf%e7%94%a8-indexed-%e5%b1%9e%e6%80%a7" aria-label="定义事件时使用 indexed 属性：">定义事件时使用 indexed 属性：</a></li>
+                <li>
+                    <a href="#%e8%bf%87%e6%bb%a4%e4%ba%8b%e4%bb%b6" aria-label="过滤事件：">过滤事件：</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>In Solidity, the indexed modifier is used to declare parameters in events (event) and indicates that the value of the parameter should be indexed. The purpose of the indexed modifier is to create a searchable index for event parameters, allowing for more efficient filtering and retrieval of events. When a parameter is declared as indexed, the Solidity compiler creates an index for that parameter in the event log.</p>
+<p>Here are some key points about the indexed attribute in Solidity events:</p>
+<h2 id="using-indexed-in-event-definitions">Using indexed in Event Definitions:<a hidden class="anchor" aria-hidden="true" href="#using-indexed-in-event-definitions">#</a></h2>
+<p>You can add the indexed attribute to parameters in your event definitions. Up to three parameters can be indexed. For example:
+event Transfer(address indexed _from, address indexed _to, uint indexed _amount);
+In the example above, both _from and _to parameters are set as indexed, meaning we can listen for these events and filter by these two parameters’ values using Web3.js or Ethers.js.</p>
+<h2 id="filtering-events">Filtering Events:<a hidden class="anchor" aria-hidden="true" href="#filtering-events">#</a></h2>
+<p>With indexed parameters, we can filter events more precisely. Here are some examples:</p>
+<ul>
+<li>Filtering events where a certain address is the sender:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">active_wallet</span>.<span style="color:#a6e22e">address</span>, <span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">filter</span>, (<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Listening to Ether transfer events:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`from: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">from</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> to: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">to</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><ul>
+<li>Filtering events where a certain address is the receiver:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">active_wallet</span>.<span style="color:#a6e22e">address</span>, <span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">filter</span>, (<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Listening to Ether transfer events:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`from: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">from</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> to: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">to</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><ul>
+<li>Filtering events with a specific amount (note the value is in hexadecimal):</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Filter for events with value of 100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#34;0x64&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Filter for events with values in an array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>, [<span style="color:#e6db74">&#34;0x63&#34;</span>, <span style="color:#e6db74">&#34;0x64&#34;</span>, <span style="color:#e6db74">&#34;0x65&#34;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">filter</span>, (<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Listening to Ether transfer events:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`from: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">from</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> to: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">to</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>In summary, the indexed attribute allows us to handle event parameters in Solidity more effectively, enhancing the flexibility and usability of events.</p>
+<p>在 Solidity 中，indexed 修饰符用于声明事件（event）中的参数，并指示将该参数的值进行索引。indexed 修饰符的作用是为事件参数创建一个可搜索的索引，以便更高效地过滤和检索事件。当一个参数被声明为 indexed 时，Solidity 编译器会在事件的日志中为该参数创建一个索引。</p>
+<p>具体来说，indexed 属性在 Solidity 事件中非常重要，因为它允许我们在事件参数上进行值过滤。以下是一些关于 indexed 属性的重要信息：</p>
+<h2 id="定义事件时使用-indexed-属性">定义事件时使用 indexed 属性：<a hidden class="anchor" aria-hidden="true" href="#定义事件时使用-indexed-属性">#</a></h2>
+<p>你可以在事件定义中的参数上增加 indexed 属性。最多可以对三个参数增加这样的属性。例如：
+event Transfer(address indexed _from, address indexed _to, uint indexed amount);
+在上面的示例中，_from 和 _to 参数都被设置为 indexed，这意味着我们可以在 Web3.js 或 Ethers.js 中通过对这两个参数进行值过滤来监听相应的事件。</p>
+<h2 id="过滤事件">过滤事件：<a hidden class="anchor" aria-hidden="true" href="#过滤事件">#</a></h2>
+<p>通过使用 indexed 参数，我们可以更精确地过滤事件。以下是一些示例：</p>
+<ul>
+<li>过滤某个地址为发送者的事件：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">active_wallet</span>.<span style="color:#a6e22e">address</span>, <span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">filter</span>, (<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;监听发送以太坊事件:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`from: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">from</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> + to: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">to</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> + value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><ul>
+<li>过滤某个地址为接收者的事件：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">active_wallet</span>.<span style="color:#a6e22e">address</span>, <span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">filter</span>, (<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;监听发送以太坊事件:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`from: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">from</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> + to: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">to</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> + value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><ul>
+<li>过滤指定数量的事件（注意参数值是十六进制）：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 过滤 value 为 100 的事件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#34;0x100&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 过滤 value 为数组中值的事件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">filters</span>.<span style="color:#a6e22e">Transfer</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">null</span>, [<span style="color:#e6db74">&#34;0x99&#34;</span>, <span style="color:#e6db74">&#34;0x100&#34;</span>, <span style="color:#e6db74">&#34;0x101&#34;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">contract_instance</span>.<span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">filter</span>, (<span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">event</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;监听发送以太坊事件:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`from: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">from</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> + to: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">to</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> + value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>总之，indexed 属性使我们能够更有效地处理 Solidity 中的事件参数，从而提高了事件的灵活性和可用性。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/modifier/">Modifier</a></li>
+      <li><a href="http://localhost:1313/tags/solidity/">Solidity</a></li>
+    </ul>
+    
+    
+  </footer><div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="CharlieChen01/CharlieChen01.github.io"
+        data-repo-id="R_kgDOLvuSMQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLvuSMc4Cexr_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+    </script>
+    
+</div>
+
+</article>
+    </main>
+    
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        {
+            let theme = 'light';
+            if (document.body.className.includes("dark")) {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            }
+            theme = 'dark';
+        }
+        localStorage.setItem("pref-theme", theme);
+        const message = {'giscus': {'setConfig': {'theme': theme}}};
+        const iframe = document.querySelector('iframe.giscus-frame');
+        iframe.contentWindow.postMessage(message, 'https://giscus.app');
+    })
+
+</script></body>
+
+</html>

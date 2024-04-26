@@ -6,7 +6,7 @@ tags = ['PoW', 'PoS']
 +++
 
 How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blockchain in Go? Here are the steps:
-[toc]
+
 1. Define the block structure: Let’s start by creating a new Go project and importing all the necessary packages to build our blockchain. Create a file named blockchain.go and import all the dependencies you need by saving the following code in it. First, you need to define the data structure of the block, including the Index, Timestamp, PrevHash, Data, Nonce, Difficulty, and Hash. The Hash field will store the hash value of the block, while the PrevHash field points to the hash of the previous block in the blockchain.
     ```
     package blockchain

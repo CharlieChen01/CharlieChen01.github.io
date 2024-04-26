@@ -6,8 +6,16 @@
     <description>Recent content in Posts on 👨‍🌾 Charlie Chen</description>
     <generator>Hugo -- 0.124.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Apr 2024 15:30:01 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Apr 2024 16:16:37 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Solidity Indexed Modifier</title>
+      <link>http://localhost:1313/posts/the-solidity-indexed-modifier/</link>
+      <pubDate>Fri, 26 Apr 2024 16:16:37 +0800</pubDate>
+      <guid>http://localhost:1313/posts/the-solidity-indexed-modifier/</guid>
+      <description>In Solidity, the indexed modifier is used to declare parameters in events (event) and indicates that the value of the parameter should be indexed. The purpose of the indexed modifier is to create a searchable index for event parameters, allowing for more efficient filtering and retrieval of events. When a parameter is declared as indexed, the Solidity compiler creates an index for that parameter in the event log.
+Here are some key points about the indexed attribute in Solidity events:</description>
+    </item>
     <item>
       <title>Differences Between ERC 20 and ERC 721</title>
       <link>http://localhost:1313/posts/differences-between-erc-20-and-erc-721/</link>
@@ -18,11 +26,11 @@ Fungibility vs. Non-Fungibility:
 ERC20 tokens are fungible. This means that each token is identical and interchangeable with any other token of the same type. For example, if you have an ERC20 token representing a cryptocurrency, one unit of that token is equivalent to any other unit of the same token. ERC721 tokens, on the other hand, are non-fungible.</description>
     </item>
     <item>
-      <title>How to Implement the POW and POS Algorithms in Go</title>
+      <title>How to Implement the PoW and PoS Algorithms in Go</title>
       <link>http://localhost:1313/posts/how-to-implement-the-pow-and-pos-algorithms-in-go/</link>
       <pubDate>Thu, 18 Apr 2024 14:47:03 +0800</pubDate>
       <guid>http://localhost:1313/posts/how-to-implement-the-pow-and-pos-algorithms-in-go/</guid>
-      <description>How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blockchain in Go? Here are the steps: [toc]
+      <description>How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blockchain in Go? Here are the steps:
 Define the block structure: Let’s start by creating a new Go project and importing all the necessary packages to build our blockchain. Create a file named blockchain.go and import all the dependencies you need by saving the following code in it. First, you need to define the data structure of the block, including the Index, Timestamp, PrevHash, Data, Nonce, Difficulty, and Hash.</description>
     </item>
   </channel>

@@ -6,8 +6,22 @@
     <description>Recent content in Tags on 👨‍🌾 Charlie Chen</description>
     <generator>Hugo -- 0.124.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Apr 2024 15:30:01 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Apr 2024 16:16:37 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Modifier</title>
+      <link>http://localhost:1313/tags/modifier/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/modifier/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Solidity</title>
+      <link>http://localhost:1313/tags/solidity/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/solidity/</guid>
+      <description></description>
+    </item>
     <item>
       <title>ERC-20</title>
       <link>http://localhost:1313/tags/erc-20/</link>
@@ -20,6 +34,20 @@
       <link>http://localhost:1313/tags/erc-721/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/erc-721/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PoS</title>
+      <link>http://localhost:1313/tags/pos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/pos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PoW</title>
+      <link>http://localhost:1313/tags/pow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/pow/</guid>
       <description></description>
     </item>
   </channel>
