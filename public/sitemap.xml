@@ -3,18 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
+    <lastmod>2024-05-07T16:46:46+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/</loc>
+    <lastmod>2024-05-07T16:46:46+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/gstreamer/</loc>
+    <lastmod>2024-05-07T16:46:46+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-05-07T16:46:46+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2024-05-07T16:46:46+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/media/about-video-processing-and-hardware-acceleration-in-gstreamer/</loc>
+    <lastmod>2024-05-07T15:28:15+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/media/diffrences-and-similarities-between-gstreamer-and-ffmpeg/</loc>
+    <lastmod>2024-05-07T14:45:14+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/ffmpeg/</loc>
+    <lastmod>2024-05-07T14:45:14+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
+    <lastmod>2024-05-07T10:37:11+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cast/</loc>
+    <lastmod>2024-05-07T10:37:11+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/c&#43;&#43;/type-casts-in-c&#43;&#43;/</loc>
+    <lastmod>2024-05-07T10:37:11+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/smart-pointers/</loc>
+    <lastmod>2024-05-07T10:12:55+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/c&#43;&#43;/smart-pointers-in-c&#43;&#43;/</loc>
+    <lastmod>2024-05-07T10:12:55+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/how-to-implementing-a-group-call-feature-for-multiple-users-using-webrtc/</loc>
+    <lastmod>2024-04-28T16:50:59+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/webrtc/</loc>
+    <lastmod>2024-04-28T16:50:59+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/automation/</loc>
+    <lastmod>2024-04-26T18:14:51+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/chainlink-vrf-and-automation-services/</loc>
+    <lastmod>2024-04-26T18:14:51+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/vrf/</loc>
+    <lastmod>2024-04-26T18:14:51+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/modifier/</loc>
     <lastmod>2024-04-26T16:16:37+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/solidity/</loc>
-    <lastmod>2024-04-26T16:16:37+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-04-26T16:16:37+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/the-solidity-indexed-modifier/</loc>

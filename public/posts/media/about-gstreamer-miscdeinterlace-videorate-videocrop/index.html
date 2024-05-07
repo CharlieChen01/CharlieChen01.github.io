@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>About Gstreamer Misc(deinterlace Videorate Videocrop) | 👨‍🌾 Charlie Chen</title>
+<meta name="keywords" content="Gstreamer">
+<meta name="description" content="在 GStreamer 中，deinterlace（场帧处理）、videorate（帧率转换）和 videocrop（视频截取）是处理视频流的重要元素：
+deinterlace（场帧处理）: 功能: deinterlace 元素用于将交错视频帧转换为逐行扫描的视频帧。这个过程涉及到不同的算法，可以根据需要选择，以提供不同的质量和 CPU 使用率 1。 使用示例:
+gst-launch-1.0 -v filesrc location=/path/to/file ! decodebin ! videoconvert ! deinterlace ! videoconvert ! autovideosink
+这个管道使用默认的去交错选项去交错视频文件。
+videorate（帧率转换）: 功能: videorate 元素接收一个带有时间戳的视频帧流，并产生一个与源端口帧率匹配的完美流。它通过丢弃和复制帧来进行校正，目前还没有使用复杂算法来插值帧 2。 使用示例:
+gst-launch-1.0 -v uridecodebin uri=file:///path/to/video.ogg ! videoconvert ! videoscale ! videorate ! video/x-raw,framerate=15/1 ! autovideosink
+这个管道解码视频文件并将帧率调整为 15fps 再播放。
+videocrop（视频截取）: 功能: videocrop 元素用于裁剪视频帧，即它可以移除图像左侧、右侧、顶部或底部的部分，并输出一个比输入图像小的图像，去除了边缘不需要的部分 3。 使用示例:
+gst-launch-1.0 -v videotestsrc ! videocrop top=42 left=1 right=4 bottom=0 ! ximagesink
+这个管道从测试视频源裁剪出一部分并显示。
+这些元素在视频处理中非常有用，可以用于视频编辑、格式转换或流媒体传输等多种场景。">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="👨‍🌾 Charlie Chen (Alt + H)">👨‍🌾 Charlie Chen</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives/" title="📚 Archive">
+                    <span>📚 Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="🏷 Tags">
+                    <span>🏷 Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 Search (Alt &#43; /)" accesskey=/>
+                    <span>🔍 Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      About Gstreamer Misc(deinterlace Videorate Videocrop)
+    </h1>
+    <div class="post-meta"><span title='2024-05-07 16:46:46 +0800 CST'>May 7, 2024</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#deinterlace%e5%9c%ba%e5%b8%a7%e5%a4%84%e7%90%86" aria-label="deinterlace（场帧处理）:">deinterlace（场帧处理）:</a></li>
+                <li>
+                    <a href="#videorate%e5%b8%a7%e7%8e%87%e8%bd%ac%e6%8d%a2" aria-label="videorate（帧率转换）:">videorate（帧率转换）:</a></li>
+                <li>
+                    <a href="#videocrop%e8%a7%86%e9%a2%91%e6%88%aa%e5%8f%96" aria-label="videocrop（视频截取）:">videocrop（视频截取）:</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>在 GStreamer 中，deinterlace（场帧处理）、videorate（帧率转换）和 videocrop（视频截取）是处理视频流的重要元素：</p>
+<h2 id="deinterlace场帧处理">deinterlace（场帧处理）:<a hidden class="anchor" aria-hidden="true" href="#deinterlace场帧处理">#</a></h2>
+<p>功能: deinterlace 元素用于将交错视频帧转换为逐行扫描的视频帧。这个过程涉及到不同的算法，可以根据需要选择，以提供不同的质量和 CPU 使用率 1。
+使用示例:</p>
+<blockquote>
+<p>gst-launch-1.0 -v filesrc location=/path/to/file ! decodebin ! videoconvert ! deinterlace ! videoconvert ! autovideosink</p>
+</blockquote>
+<p>这个管道使用默认的去交错选项去交错视频文件。</p>
+<h2 id="videorate帧率转换">videorate（帧率转换）:<a hidden class="anchor" aria-hidden="true" href="#videorate帧率转换">#</a></h2>
+<p>功能: videorate 元素接收一个带有时间戳的视频帧流，并产生一个与源端口帧率匹配的完美流。它通过丢弃和复制帧来进行校正，目前还没有使用复杂算法来插值帧 2。
+使用示例:</p>
+<blockquote>
+<p>gst-launch-1.0 -v uridecodebin uri=file:///path/to/video.ogg ! videoconvert ! videoscale ! videorate ! video/x-raw,framerate=15/1 ! autovideosink</p>
+</blockquote>
+<p>这个管道解码视频文件并将帧率调整为 15fps 再播放。</p>
+<h2 id="videocrop视频截取">videocrop（视频截取）:<a hidden class="anchor" aria-hidden="true" href="#videocrop视频截取">#</a></h2>
+<p>功能: videocrop 元素用于裁剪视频帧，即它可以移除图像左侧、右侧、顶部或底部的部分，并输出一个比输入图像小的图像，去除了边缘不需要的部分 3。
+使用示例:</p>
+<blockquote>
+<p>gst-launch-1.0 -v videotestsrc ! videocrop top=42 left=1 right=4 bottom=0 ! ximagesink</p>
+</blockquote>
+<p>这个管道从测试视频源裁剪出一部分并显示。</p>
+<p>这些元素在视频处理中非常有用，可以用于视频编辑、格式转换或流媒体传输等多种场景。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/gstreamer/">Gstreamer</a></li>
+    </ul>
+    
+    
+  </footer><div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="CharlieChen01/CharlieChen01.github.io"
+        data-repo-id="R_kgDOLvuSMQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLvuSMc4Cexr_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+    </script>
+    
+</div>
+
+</article>
+    </main>
+    
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        {
+            let theme = 'light';
+            if (document.body.className.includes("dark")) {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            }
+            theme = 'dark';
+        }
+        localStorage.setItem("pref-theme", theme);
+        const message = {'giscus': {'setConfig': {'theme': theme}}};
+        const iframe = document.querySelector('iframe.giscus-frame');
+        iframe.contentWindow.postMessage(message, 'https://giscus.app');
+    })
+
+</script></body>
+
+</html>

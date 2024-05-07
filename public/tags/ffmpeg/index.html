@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Ffmpeg | 👨‍🌾 Charlie Chen</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/tags/ffmpeg/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/ffmpeg/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/ffmpeg/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="👨‍🌾 Charlie Chen (Alt + H)">👨‍🌾 Charlie Chen</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives/" title="📚 Archive">
+                    <span>📚 Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="🏷 Tags">
+                    <span>🏷 Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 Search (Alt &#43; /)" accesskey=/>
+                    <span>🔍 Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Ffmpeg
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Diffrences and Similarities Between Gstreamer and FFmpeg
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>FFmpeg 和 GStreamer 都是开源的多媒体框架，它们在处理音频和视频方面有着广泛的应用。两者都提供了强大的工具和库，用于编码、解码、转码、流处理等多媒体操作。以下是对 FFmpeg 和 GStreamer 的深入对比和各自的应用场景：
+FFmpeg FFmpeg 是一个跨平台的解决方案，用于录制、转换数字音视频，并将其转换成不同的格式。它包含了 libavcodec ，这是一个用于多个项目音视频编解码的领先库。FFmpeg 在 Linux 平台下开发，但它可以在包括 Windows 在内的大多数操作系统中编译。
+特点：
+高性能：FFmpeg 以其极快的编解码速度而闻名。 广泛的格式支持：支持几乎所有已知的音视频格式。 命令行工具：提供了丰富的命令行工具，方便用户直接操作。 库支持：可以作为库嵌入到其他程序中，用于开发多媒体应用程序。 应用场景：
+视频转码：在需要将视频从一种格式转换为另一种格式时，FFmpeg 是首选工具。 流媒体服务器：作为流媒体服务器的一部分，用于实时转码和流处理。 视频编辑软件：许多视频编辑软件使用 FFmpeg 作为其编解码器库。 GStreamer GStreamer 是一个基于流水线的多媒体框架，用于创建流媒体应用程序。它的设计理念是基于插件的架构，允许开发者轻松地添加新的编解码器和功能。
+特点：
+模块化：GStreamer 的插件架构使得扩展功能变得简单。 管道模型：使用元素（elements）和管道（pipelines）来构建复杂的多媒体处理流程。 跨平台：支持多种操作系统，包括 Linux、Windows 和 macOS。 可编程性：提供了丰富的 API，适合开发复杂的应用程序。 应用场景：
+多媒体播放器：GStreamer 常用于开发多媒体播放器，因其灵活性和可扩展性。 实时音视频处理：在需要实时处理音视频数据的应用中，如视频会议系统。 嵌入式系统：由于其模块化设计，GStreamer 在资源受限的嵌入式系统中也有应用。 对比 性能：FFmpeg 在编解码性能上通常优于 GStreamer，特别是在处理特定格式时。 灵活性：GStreamer 的管道模型提供了更高的灵活性，适合构建复杂的处理流程。 易用性：FFmpeg 的命令行工具通常更易于使用，而 GStreamer 可能需要更多的编程知识。 社区与生态：两者都有活跃的社区，但 FFmpeg 的社区可能更大一些，而 GStreamer 在某些特定领域（如 Linux 桌面环境）有更深的根植。 选择 FFmpeg 还是 GStreamer 取决于具体的应用需求。如果需要快速、高效地处理音视频文件，FFmpeg 可能是更好的选择。如果项目需要高度的灵活性和可扩展性，GStreamer 可能更适合。在实际应用中，两者甚至可以结合使用，以发挥各自的优势。</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 14:45:14 +0800 CST'>May 7, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Diffrences and Similarities Between Gstreamer and FFmpeg" href="http://localhost:1313/posts/media/diffrences-and-similarities-between-gstreamer-and-ffmpeg/"></a>
+</article>
+    </main>
+    
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        {
+            let theme = 'light';
+            if (document.body.className.includes("dark")) {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            }
+            theme = 'dark';
+        }
+        localStorage.setItem("pref-theme", theme);
+        const message = {'giscus': {'setConfig': {'theme': theme}}};
+        const iframe = document.querySelector('iframe.giscus-frame');
+        iframe.contentWindow.postMessage(message, 'https://giscus.app');
+    })
+
+</script></body>
+
+</html>

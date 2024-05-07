@@ -123,7 +123,132 @@
 
 <article class="first-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">About Gstreamer Misc(deinterlace Videorate Videocrop)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在 GStreamer 中，deinterlace（场帧处理）、videorate（帧率转换）和 videocrop（视频截取）是处理视频流的重要元素：
+deinterlace（场帧处理）: 功能: deinterlace 元素用于将交错视频帧转换为逐行扫描的视频帧。这个过程涉及到不同的算法，可以根据需要选择，以提供不同的质量和 CPU 使用率 1。 使用示例:
+gst-launch-1.0 -v filesrc location=/path/to/file ! decodebin ! videoconvert ! deinterlace ! videoconvert ! autovideosink
+这个管道使用默认的去交错选项去交错视频文件。
+videorate（帧率转换）: 功能: videorate 元素接收一个带有时间戳的视频帧流，并产生一个与源端口帧率匹配的完美流。它通过丢弃和复制帧来进行校正，目前还没有使用复杂算法来插值帧 2。 使用示例:
+gst-launch-1.0 -v uridecodebin uri=file:///path/to/video.ogg ! videoconvert ! videoscale ! videorate ! video/x-raw,framerate=15/1 ! autovideosink
+这个管道解码视频文件并将帧率调整为 15fps 再播放。
+videocrop（视频截取）: 功能: videocrop 元素用于裁剪视频帧，即它可以移除图像左侧、右侧、顶部或底部的部分，并输出一个比输入图像小的图像，去除了边缘不需要的部分 3。 使用示例:
+gst-launch-1.0 -v videotestsrc ! videocrop top=42 left=1 right=4 bottom=0 ! ximagesink
+这个管道从测试视频源裁剪出一部分并显示。
+这些元素在视频处理中非常有用，可以用于视频编辑、格式转换或流媒体传输等多种场景。</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 16:46:46 +0800 CST'>May 7, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to About Gstreamer Misc(deinterlace Videorate Videocrop)" href="http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">About Video Processing and Hardware Acceleration in Gstreamer
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>关于 Gstreamer 中的视频处理与硬件加速 –节选自《LiveVideoStackCon2022 上海站大会， 英特尔加速计算系统与图形部工程师何俊彦，Gstreamer 的框架和特点，视频的模块化处理，以及其硬件加速的实现与应用案例》
+Basic Idea 这是 Gstreamer 中一个 element 的基本形式。两端的 pad 来负责输入和输出，而由当中的 element 来完成具体工作。比如一个 decoder，输入是 H264 的码流，输出则是 decoded 数据，也就是我们常说的视频帧，所以此处的 element 就可以实现为一个完整的 H264 的解码器。该解码器的实现可以是一个完整的内部实现，也可以封装已有的外部解码器来实现。比如，我们可以把 OpenH264 项目 build 成 library 的形式并适当封装，在此 element 中直接调用，从而实现该 H264 解码器插件的功能。
+我们可以发现，这里的输入输出格式是非常随意的，甚至输入可以是 video，输出是 audio，这就使插件的设计有了更大更灵活的空间。比如我们录取了一个视频，视频里的每一帧都是拍的某本书的一页，于是我们可以设计这样一个 pipeline，其中一个 element 将 video 转换成 text，然后连接另一个 element，其接受 text 输入，并用语音将其全部读出并输出 audio，从而完成了将整本书转成 audio 的功能。这些 element 的设计方式在 Gstreamer 是被完全允许的。当然，FFmpeg 也能完成上述功能，但在提交代码到社区和 upstream 过程中会有遇到很大的麻烦和挑战，因为这种 video 转 text 或者 text 转 audio 的模式，在 FFmpeg 中并没有现成的归类，也许需要你提出新的 filter 类型或新的模式。 这是更多 element 的类型，demuxer 对应 FFmpeg 里的 av input format，source element 对应于 FFmpeg 里的 URL，用来产生源输入，filter element 则对应于 FFmpeg 里的 filter。总的来说，这些内容有与 FFmpeg 相似的地方，但是会以 element 的形式进行管理，最后用 pipeline 将这些内容连接在一起，由第一个向最后一个推送数据。 在电子技术（特别是数字电路）中，数据选择器（英语：Data Selector），或称多路复用器（英语：multiplexer，简称：MUX）是一种可以从多个模拟或数字输入信号中选择一个信号进行输出的器件&gt; 1。一个有 2^n 输入端的数据选择器有 n 个可选择的输入-输出线路，可以通过控制端来选择其中一个信号作为输出 1。数据选择器主要用于增加一定量的时间和带宽内的可以通过网络发送的数据量 1。它使&gt; 多个信号共享一个设备或资源，例如一个模拟数字转换器或一个传输线，而不必给每一个输入信号配备一个设备。...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 15:28:15 +0800 CST'>May 7, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to About Video Processing and Hardware Acceleration in Gstreamer" href="http://localhost:1313/posts/media/about-video-processing-and-hardware-acceleration-in-gstreamer/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Diffrences and Similarities Between Gstreamer and FFmpeg
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>FFmpeg 和 GStreamer 都是开源的多媒体框架，它们在处理音频和视频方面有着广泛的应用。两者都提供了强大的工具和库，用于编码、解码、转码、流处理等多媒体操作。以下是对 FFmpeg 和 GStreamer 的深入对比和各自的应用场景：
+FFmpeg FFmpeg 是一个跨平台的解决方案，用于录制、转换数字音视频，并将其转换成不同的格式。它包含了 libavcodec ，这是一个用于多个项目音视频编解码的领先库。FFmpeg 在 Linux 平台下开发，但它可以在包括 Windows 在内的大多数操作系统中编译。
+特点：
+高性能：FFmpeg 以其极快的编解码速度而闻名。 广泛的格式支持：支持几乎所有已知的音视频格式。 命令行工具：提供了丰富的命令行工具，方便用户直接操作。 库支持：可以作为库嵌入到其他程序中，用于开发多媒体应用程序。 应用场景：
+视频转码：在需要将视频从一种格式转换为另一种格式时，FFmpeg 是首选工具。 流媒体服务器：作为流媒体服务器的一部分，用于实时转码和流处理。 视频编辑软件：许多视频编辑软件使用 FFmpeg 作为其编解码器库。 GStreamer GStreamer 是一个基于流水线的多媒体框架，用于创建流媒体应用程序。它的设计理念是基于插件的架构，允许开发者轻松地添加新的编解码器和功能。
+特点：
+模块化：GStreamer 的插件架构使得扩展功能变得简单。 管道模型：使用元素（elements）和管道（pipelines）来构建复杂的多媒体处理流程。 跨平台：支持多种操作系统，包括 Linux、Windows 和 macOS。 可编程性：提供了丰富的 API，适合开发复杂的应用程序。 应用场景：
+多媒体播放器：GStreamer 常用于开发多媒体播放器，因其灵活性和可扩展性。 实时音视频处理：在需要实时处理音视频数据的应用中，如视频会议系统。 嵌入式系统：由于其模块化设计，GStreamer 在资源受限的嵌入式系统中也有应用。 对比 性能：FFmpeg 在编解码性能上通常优于 GStreamer，特别是在处理特定格式时。 灵活性：GStreamer 的管道模型提供了更高的灵活性，适合构建复杂的处理流程。 易用性：FFmpeg 的命令行工具通常更易于使用，而 GStreamer 可能需要更多的编程知识。 社区与生态：两者都有活跃的社区，但 FFmpeg 的社区可能更大一些，而 GStreamer 在某些特定领域（如 Linux 桌面环境）有更深的根植。 选择 FFmpeg 还是 GStreamer 取决于具体的应用需求。如果需要快速、高效地处理音视频文件，FFmpeg 可能是更好的选择。如果项目需要高度的灵活性和可扩展性，GStreamer 可能更适合。在实际应用中，两者甚至可以结合使用，以发挥各自的优势。</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 14:45:14 +0800 CST'>May 7, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Diffrences and Similarities Between Gstreamer and FFmpeg" href="http://localhost:1313/posts/media/diffrences-and-similarities-between-gstreamer-and-ffmpeg/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Type Casts in C&#43;&#43;
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在 C&#43;&#43; 中，类型转换是一个重要的概念，尤其是在处理不同类型的对象和指针时。以下是四种 C&#43;&#43; 类型转换运算符的适用场景：
+static_cast: 用于基本数据类型之间的转换，如将 int 转换为 float。 用于类层次结构中向上转型（从派生类指针转换为基类指针）。 可以调用类型的显式转换构造函数或转换运算符。 示例： int i = 42; float f = static_cast&lt;float&gt;(i); // 将 int 转换为 float reinterpret_cast: 用于指针类型之间的转换，但不改变指针指向的内存内容。 可以将指针转换为足够大的整数类型，反之亦然。 通常用于底层操作，如操作硬件或进行与平台相关的调用。 示例： int* p = new int(42); void* v = reinterpret_cast&lt;void*&gt;(p); // 将 int* 转换为 void* const_cast: 用于添加或移除对象的 const 属性。 只能用于相同类型之间的转换，不能改变类型本身。 通常用于调用那些参数为非 const 的函数，而你有一个 const 对象。 示例： const int* cp = &amp;i; int* p = const_cast&lt;int*&gt;(cp); // 移除 const 属性 dynamic_cast: 主要用于类层次结构中的安全向下转型（从基类指针转换为派生类指针）。 在转换无效时会返回 nullptr，因此比 static_cast 更安全。 需要运行时类型信息（RTTI）支持。 示例： Base* b = new Derived(); Derived* d = dynamic_cast&lt;Derived*&gt;(b); // 安全向下转型 在选择使用哪种类型转换时，应考虑转换的安全性和目的。static_cast 是最常用的转换类型，适用于大多数非多态类型转换。reinterpret_cast 是最不安全的，应谨慎使用。const_cast 通常用于移除 const 属性以便于特定函数的调用。dynamic_cast 在多态类型转换中提供了类型安全检查，但性能开销较大 12345。...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 10:37:11 +0800 CST'>May 7, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Type Casts in C&#43;&#43;" href="http://localhost:1313/posts/c&#43;&#43;/type-casts-in-c&#43;&#43;/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Smart Pointers in C&#43;&#43;
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Let’s explore some examples of using std::unique_ptr, std::shared_ptr, and std::weak_ptr in C&#43;&#43;.
+std::unique_ptr: std::unique_ptr is designed for exclusive ownership of a dynamically allocated object. It ensures that there can be at most one unique_ptr pointing to any resource. When the unique_ptr is destroyed, the resource it points to is automatically reclaimed. You cannot make a copy of a unique_ptr, but you can move it using the new move semantics. Example:...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 10:12:55 +0800 CST'>May 7, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Smart Pointers in C&#43;&#43;" href="http://localhost:1313/posts/c&#43;&#43;/smart-pointers-in-c&#43;&#43;/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">How to Implementing a Group Call Feature for Multiple Users Using WebRTC
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>How to implementing a group call feature for multiple users using WebRTC involves managing multiple peer connections and ensuring efficient data transfer among all participants. Here’s a high-level overview of the steps you might take to enable group video calls for up to 8 users:
+Signaling Server: Set up a signaling server to coordinate communication between clients. This server will handle session initiation, participant management, and message passing between peers. Peer Connections: Each user will establish a peer connection with every other user in the group call....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-28 16:50:59 +0800 CST'>April 28, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to How to Implementing a Group Call Feature for Multiple Users Using WebRTC" href="http://localhost:1313/posts/how-to-implementing-a-group-call-feature-for-multiple-users-using-webrtc/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Chainlink VRF and Automation Services
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Chainlink VRF (Verifiable Random Function) and Chainlink Automation are two distinct services provided by Chainlink that offer different functionalities for smart contracts on blockchain networks.
+Chainlink VRF is a provably fair and verifiable random number generator (RNG) designed for smart contracts that require a high degree of randomness, such as in gaming or for the random assignment of duties and resources. It generates random values along with cryptographic proof of how those values were determined....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-04-26 18:14:51 +0800 CST'>April 26, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Chainlink VRF and Automation Services" href="http://localhost:1313/posts/chainlink-vrf-and-automation-services/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">The Solidity Indexed Modifier
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
     </h2>
   </header>
   <div class="entry-content">
@@ -137,6 +262,12 @@ Here are some key points about the indexed attribute in Solidity events:...</p>
 <article class="post-entry"> 
   <header class="entry-header">
     <h2 class="entry-hint-parent">Differences Between ERC 20 and ERC 721
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
     </h2>
   </header>
   <div class="entry-content">
@@ -151,6 +282,12 @@ ERC20 tokens are fungible. This means that each token is identical and interch
 <article class="post-entry"> 
   <header class="entry-header">
     <h2 class="entry-hint-parent">How to Implement the PoW and PoS Algorithms in Go
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
     </h2>
   </header>
   <div class="entry-content">
