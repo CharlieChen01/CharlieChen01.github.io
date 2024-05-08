@@ -6,8 +6,15 @@
     <description>Recent content in Posts on 👨‍🌾 Charlie Chen</description>
     <generator>Hugo -- 0.124.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 May 2024 16:46:46 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 May 2024 17:43:51 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GStreamer Pipeline for Playing WebM URLs</title>
+      <link>http://localhost:1313/posts/media/gstreamer-pipeline-for-playing-webm-urls/</link>
+      <pubDate>Wed, 08 May 2024 17:43:51 +0800</pubDate>
+      <guid>http://localhost:1313/posts/media/gstreamer-pipeline-for-playing-webm-urls/</guid>
+      <description>GStreamer 播放一个 WebM 视频文件 #include &amp;lt;gst/gst.h&amp;gt; int main (int argc, char *argv[]) { GstElement *pipeline; GstBus *bus; GstMessage *msg; /* Initialize GStreamer */ gst_init (&amp;amp;argc, &amp;amp;argv); /* Build the pipeline */ pipeline = gst_parse_launch (&amp;#34;playbin uri=https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm&amp;#34;, NULL); /* Start playing */ gst_element_set_state (pipeline, GST_STATE_PLAYING); /* Wait until error or EOS */ bus = gst_element_get_bus (pipeline); msg = gst_bus_timed_pop_filtered (bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_ERROR | GST_MESSAGE_EOS); /* Free resources */ if (msg != NULL) gst_message_unref (msg); gst_object_unref (bus); gst_element_set_state (pipeline, GST_STATE_NULL); gst_object_unref (pipeline); return 0; } 这段代码使用了 GStreamer 库来播放一个 WebM 视频文件。让我逐步解释一下每个部分的作用：</description>
+    </item>
     <item>
       <title>About Gstreamer Misc(deinterlace Videorate Videocrop)</title>
       <link>http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/</link>

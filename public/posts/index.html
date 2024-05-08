@@ -126,6 +126,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">GStreamer Pipeline for Playing WebM URLs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>GStreamer 播放一个 WebM 视频文件 #include &lt;gst/gst.h&gt; int main (int argc, char *argv[]) { GstElement *pipeline; GstBus *bus; GstMessage *msg; /* Initialize GStreamer */ gst_init (&amp;argc, &amp;argv); /* Build the pipeline */ pipeline = gst_parse_launch (&#34;playbin uri=https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm&#34;, NULL); /* Start playing */ gst_element_set_state (pipeline, GST_STATE_PLAYING); /* Wait until error or EOS */ bus = gst_element_get_bus (pipeline); msg = gst_bus_timed_pop_filtered (bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_ERROR | GST_MESSAGE_EOS); /* Free resources */ if (msg != NULL) gst_message_unref (msg); gst_object_unref (bus); gst_element_set_state (pipeline, GST_STATE_NULL); gst_object_unref (pipeline); return 0; } 这段代码使用了 GStreamer 库来播放一个 WebM 视频文件。让我逐步解释一下每个部分的作用：...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-08 17:43:51 +0800 CST'>May 8, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to GStreamer Pipeline for Playing WebM URLs" href="http://localhost:1313/posts/media/gstreamer-pipeline-for-playing-webm-urls/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">About Gstreamer Misc(deinterlace Videorate Videocrop)
     </h2>
   </header>
@@ -275,25 +287,12 @@ ERC20 tokens are fungible. This means that each token is identical and interch
   <footer class="entry-footer"><span title='2024-04-24 15:30:01 +0800 CST'>April 24, 2024</span></footer>
   <a class="entry-link" aria-label="post link to Differences Between ERC 20 and ERC 721" href="http://localhost:1313/posts/differences-between-erc-20-and-erc-721/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">How to Implement the PoW and PoS Algorithms in Go
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blockchain in Go? Here are the steps:
-Define the block structure: Let’s start by creating a new Go project and importing all the necessary packages to build our blockchain. Create a file named blockchain.go and import all the dependencies you need by saving the following code in it. First, you need to define the data structure of the block, including the Index, Timestamp, PrevHash, Data, Nonce, Difficulty, and Hash....</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-18 14:47:03 +0800 CST'>April 18, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to How to Implement the PoW and PoS Algorithms in Go" href="http://localhost:1313/posts/how-to-implement-the-pow-and-pos-algorithms-in-go/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="http://localhost:1313/posts/page/2/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
     </main>
     
 <script>
