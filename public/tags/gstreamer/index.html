@@ -126,6 +126,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">GStreamer Pipeline for Playing WebM URLs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>GStreamer 播放一个 WebM 视频文件 #include &lt;gst/gst.h&gt; int main (int argc, char *argv[]) { GstElement *pipeline; GstBus *bus; GstMessage *msg; /* Initialize GStreamer */ gst_init (&amp;argc, &amp;argv); /* Build the pipeline */ pipeline = gst_parse_launch (&#34;playbin uri=https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm&#34;, NULL); /* Start playing */ gst_element_set_state (pipeline, GST_STATE_PLAYING); /* Wait until error or EOS */ bus = gst_element_get_bus (pipeline); msg = gst_bus_timed_pop_filtered (bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_ERROR | GST_MESSAGE_EOS); /* Free resources */ if (msg != NULL) gst_message_unref (msg); gst_object_unref (bus); gst_element_set_state (pipeline, GST_STATE_NULL); gst_object_unref (pipeline); return 0; } 这段代码使用了 GStreamer 库来播放一个 WebM 视频文件。让我逐步解释一下每个部分的作用：...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-08 17:43:51 +0800 CST'>May 8, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to GStreamer Pipeline for Playing WebM URLs" href="http://localhost:1313/posts/media/gstreamer-pipeline-for-playing-webm-urls/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">About Gstreamer Misc(deinterlace Videorate Videocrop)
     </h2>
   </header>
