@@ -1,7 +1,7 @@
 +++
 title = 'Differences Between ERC 20 and ERC 721'
 date = 2024-04-24T15:30:01+08:00
-draft = true
+draft = false
 tags = ['ERC-20', 'ERC-721']
 categories = ["Blockchain"]
 +++

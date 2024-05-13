@@ -123,6 +123,33 @@
 
 <article class="first-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">How to Mux Multi Videoes Using Gstreamer
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用 Python 和 GStreamer 将三个视频流混流 要使用 Python 和 GStreamer 将三个视频流混合成一个，您可以创建一个 GStreamer 管道，该管道包含用于处理和混合视频流的元素。以下是一个简单的代码示例，展示了如何将三个视频源混合到一个窗口中：
+import gi gi.require_version(&#39;Gst&#39;, &#39;1.0&#39;) from gi.repository import Gst # 初始化GStreamer Gst.init(None) # 创建GStreamer管道 pipeline = Gst.Pipeline.new(&#34;video-mixer&#34;) # 创建并配置混流器元素 mixer = Gst.ElementFactory.make(&#34;videomixer&#34;, &#34;mixer&#34;) pipeline.add(mixer) # 创建视频源和窗口输出 source1 = Gst.ElementFactory.make(&#34;videotestsrc&#34;, &#34;source1&#34;) source2 = Gst.ElementFactory.make(&#34;videotestsrc&#34;, &#34;source2&#34;) source3 = Gst.ElementFactory.make(&#34;videotestsrc&#34;, &#34;source3&#34;) sink = Gst.ElementFactory.make(&#34;autovideosink&#34;, &#34;sink&#34;) # 将元素添加到管道 pipeline.add(source1) pipeline.add(source2) pipeline.add(source3) pipeline.add(sink) # 将视频源链接到混流器 source1.link(mixer) source2.link(mixer) source3.link(mixer) # 将混流器链接到窗口输出 mixer.link(sink) # 设置视频源的属性（例如：模式、位置等） source1.set_property(&#34;pattern&#34;, 0) # 设置测试图案 source2....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-13 13:55:10 +0800 CST'>May 13, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to How to Mux Multi Videoes Using Gstreamer" href="http://localhost:1313/posts/media/how-to-mux-multi-videoes-using-gstreamer/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">How to Mux Audio and Image Using Gstreamer
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用 Python 和 GStreamer 混流图片、音频 要使用 Python 和 GStreamer 创建一个视频，其中一张图片作为背景，并在此背景上按顺序显示一系列图片，同时播放音频，您可以按照以下步骤构建 GStreamer 管道：
+创建 GStreamer 管道：这是处理所有元素的容器。 添加背景图片：使用 videomixer 元素将图片作为背景。 添加图片序列：使用 imagefreeze 和 multifilesrc 元素来循环显示图片。 添加音频：使用 playbin 元素来播放音频文件。 设置管道状态：将管道设置为播放状态。 以下是一个简单的代码示例，展示了如何实现上述功能：
+import gi gi.require_version(&#39;Gst&#39;, &#39;1.0&#39;) from gi.repository import Gst # 初始化GStreamer Gst.init(None) # 创建GStreamer管道 pipeline = Gst.Pipeline.new(&#34;video-audio-mixer&#34;) # 创建并配置混流器元素 mixer = Gst.ElementFactory.make(&#34;videomixer&#34;, &#34;mixer&#34;) pipeline.add(mixer) # 创建背景图片源 background = Gst.ElementFactory.make(&#34;filesrc&#34;, &#34;background&#34;) background.set_property(&#34;location&#34;, &#34;path/to/background.jpg&#34;) jpegdec = Gst.ElementFactory.make(&#34;jpegdec&#34;, &#34;jpegdec&#34;) imagefreeze = Gst.ElementFactory.make(&#34;imagefreeze&#34;, &#34;imagefreeze&#34;) pipeline.add(background) pipeline.add(jpegdec) pipeline.add(imagefreeze) background....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-13 13:48:23 +0800 CST'>May 13, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to How to Mux Audio and Image Using Gstreamer" href="http://localhost:1313/posts/media/how-to-mux-audio-and-image-using-gstreamer/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Build Quiz Function Using React
     </h2>
   </header>
@@ -245,44 +272,6 @@ Signaling Server: Set up a signaling server to coordinate communication between 
   </div>
   <footer class="entry-footer"><span title='2024-04-28 16:50:59 +0800 CST'>April 28, 2024</span></footer>
   <a class="entry-link" aria-label="post link to How to Implementing a Group Call Feature for Multiple Users Using WebRTC" href="http://localhost:1313/posts/how-to-implementing-a-group-call-feature-for-multiple-users-using-webrtc/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Chainlink VRF and Automation Services
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Chainlink VRF (Verifiable Random Function) and Chainlink Automation are two distinct services provided by Chainlink that offer different functionalities for smart contracts on blockchain networks.
-Chainlink VRF is a provably fair and verifiable random number generator (RNG) designed for smart contracts that require a high degree of randomness, such as in gaming or for the random assignment of duties and resources. It generates random values along with cryptographic proof of how those values were determined....</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 18:14:51 +0800 CST'>April 26, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Chainlink VRF and Automation Services" href="http://localhost:1313/posts/chainlink-vrf-and-automation-services/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">The Solidity Indexed Modifier
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>In Solidity, the indexed modifier is used to declare parameters in events (event) and indicates that the value of the parameter should be indexed. The purpose of the indexed modifier is to create a searchable index for event parameters, allowing for more efficient filtering and retrieval of events. When a parameter is declared as indexed, the Solidity compiler creates an index for that parameter in the event log.
-Here are some key points about the indexed attribute in Solidity events:...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-26 16:16:37 +0800 CST'>April 26, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to The Solidity Indexed Modifier" href="http://localhost:1313/posts/the-solidity-indexed-modifier/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

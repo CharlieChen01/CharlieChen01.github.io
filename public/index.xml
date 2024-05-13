@@ -6,8 +6,25 @@
     <description>Recent content on 👨‍🌾 Charlie Chen</description>
     <generator>Hugo -- 0.124.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 May 2024 20:08:10 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2024 13:55:10 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Mux Multi Videoes Using Gstreamer</title>
+      <link>http://localhost:1313/posts/media/how-to-mux-multi-videoes-using-gstreamer/</link>
+      <pubDate>Mon, 13 May 2024 13:55:10 +0800</pubDate>
+      <guid>http://localhost:1313/posts/media/how-to-mux-multi-videoes-using-gstreamer/</guid>
+      <description>使用 Python 和 GStreamer 将三个视频流混流 要使用 Python 和 GStreamer 将三个视频流混合成一个，您可以创建一个 GStreamer 管道，该管道包含用于处理和混合视频流的元素。以下是一个简单的代码示例，展示了如何将三个视频源混合到一个窗口中：
+import gi gi.require_version(&amp;#39;Gst&amp;#39;, &amp;#39;1.0&amp;#39;) from gi.repository import Gst # 初始化GStreamer Gst.init(None) # 创建GStreamer管道 pipeline = Gst.Pipeline.new(&amp;#34;video-mixer&amp;#34;) # 创建并配置混流器元素 mixer = Gst.ElementFactory.make(&amp;#34;videomixer&amp;#34;, &amp;#34;mixer&amp;#34;) pipeline.add(mixer) # 创建视频源和窗口输出 source1 = Gst.ElementFactory.make(&amp;#34;videotestsrc&amp;#34;, &amp;#34;source1&amp;#34;) source2 = Gst.ElementFactory.make(&amp;#34;videotestsrc&amp;#34;, &amp;#34;source2&amp;#34;) source3 = Gst.ElementFactory.make(&amp;#34;videotestsrc&amp;#34;, &amp;#34;source3&amp;#34;) sink = Gst.ElementFactory.make(&amp;#34;autovideosink&amp;#34;, &amp;#34;sink&amp;#34;) # 将元素添加到管道 pipeline.add(source1) pipeline.add(source2) pipeline.add(source3) pipeline.add(sink) # 将视频源链接到混流器 source1.link(mixer) source2.link(mixer) source3.link(mixer) # 将混流器链接到窗口输出 mixer.link(sink) # 设置视频源的属性（例如：模式、位置等） source1.set_property(&amp;#34;pattern&amp;#34;, 0) # 设置测试图案 source2.</description>
+    </item>
+    <item>
+      <title>How to Mux Audio and Image Using Gstreamer</title>
+      <link>http://localhost:1313/posts/media/how-to-mux-audio-and-image-using-gstreamer/</link>
+      <pubDate>Mon, 13 May 2024 13:48:23 +0800</pubDate>
+      <guid>http://localhost:1313/posts/media/how-to-mux-audio-and-image-using-gstreamer/</guid>
+      <description>使用 Python 和 GStreamer 混流图片、音频 要使用 Python 和 GStreamer 创建一个视频，其中一张图片作为背景，并在此背景上按顺序显示一系列图片，同时播放音频，您可以按照以下步骤构建 GStreamer 管道：
+创建 GStreamer 管道：这是处理所有元素的容器。 添加背景图片：使用 videomixer 元素将图片作为背景。 添加图片序列：使用 imagefreeze 和 multifilesrc 元素来循环显示图片。 添加音频：使用 playbin 元素来播放音频文件。 设置管道状态：将管道设置为播放状态。 以下是一个简单的代码示例，展示了如何实现上述功能：
+import gi gi.require_version(&amp;#39;Gst&amp;#39;, &amp;#39;1.0&amp;#39;) from gi.repository import Gst # 初始化GStreamer Gst.init(None) # 创建GStreamer管道 pipeline = Gst.Pipeline.new(&amp;#34;video-audio-mixer&amp;#34;) # 创建并配置混流器元素 mixer = Gst.ElementFactory.make(&amp;#34;videomixer&amp;#34;, &amp;#34;mixer&amp;#34;) pipeline.add(mixer) # 创建背景图片源 background = Gst.ElementFactory.make(&amp;#34;filesrc&amp;#34;, &amp;#34;background&amp;#34;) background.set_property(&amp;#34;location&amp;#34;, &amp;#34;path/to/background.jpg&amp;#34;) jpegdec = Gst.ElementFactory.make(&amp;#34;jpegdec&amp;#34;, &amp;#34;jpegdec&amp;#34;) imagefreeze = Gst.ElementFactory.make(&amp;#34;imagefreeze&amp;#34;, &amp;#34;imagefreeze&amp;#34;) pipeline.add(background) pipeline.add(jpegdec) pipeline.add(imagefreeze) background.</description>
+    </item>
     <item>
       <title>Build Quiz Function Using React</title>
       <link>http://localhost:1313/posts/react/build-quiz-function-using-react/</link>

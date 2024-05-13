@@ -1,7 +1,7 @@
 +++
 title = 'How to Implement the PoW and PoS Algorithms in Go'
 date = 2024-04-18T14:47:03+08:00
-draft = true
+draft = false
 tags = ['PoW', 'PoS']
 +++
 

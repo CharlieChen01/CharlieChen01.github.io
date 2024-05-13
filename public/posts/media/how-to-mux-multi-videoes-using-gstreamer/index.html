@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>How to Mux Multi Videoes Using Gstreamer | 👨‍🌾 Charlie Chen</title>
+<meta name="keywords" content="">
+<meta name="description" content="使用 Python 和 GStreamer 将三个视频流混流 要使用 Python 和 GStreamer 将三个视频流混合成一个，您可以创建一个 GStreamer 管道，该管道包含用于处理和混合视频流的元素。以下是一个简单的代码示例，展示了如何将三个视频源混合到一个窗口中：
+import gi gi.require_version(&#39;Gst&#39;, &#39;1.0&#39;) from gi.repository import Gst # 初始化GStreamer Gst.init(None) # 创建GStreamer管道 pipeline = Gst.Pipeline.new(&#34;video-mixer&#34;) # 创建并配置混流器元素 mixer = Gst.ElementFactory.make(&#34;videomixer&#34;, &#34;mixer&#34;) pipeline.add(mixer) # 创建视频源和窗口输出 source1 = Gst.ElementFactory.make(&#34;videotestsrc&#34;, &#34;source1&#34;) source2 = Gst.ElementFactory.make(&#34;videotestsrc&#34;, &#34;source2&#34;) source3 = Gst.ElementFactory.make(&#34;videotestsrc&#34;, &#34;source3&#34;) sink = Gst.ElementFactory.make(&#34;autovideosink&#34;, &#34;sink&#34;) # 将元素添加到管道 pipeline.add(source1) pipeline.add(source2) pipeline.add(source3) pipeline.add(sink) # 将视频源链接到混流器 source1.link(mixer) source2.link(mixer) source3.link(mixer) # 将混流器链接到窗口输出 mixer.link(sink) # 设置视频源的属性（例如：模式、位置等） source1.set_property(&#34;pattern&#34;, 0) # 设置测试图案 source2.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/media/how-to-mux-multi-videoes-using-gstreamer/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/media/how-to-mux-multi-videoes-using-gstreamer/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="👨‍🌾 Charlie Chen (Alt + H)">👨‍🌾 Charlie Chen</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives/" title="📚 Archive">
+                    <span>📚 Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="🏷 Tags">
+                    <span>🏷 Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 Search (Alt &#43; /)" accesskey=/>
+                    <span>🔍 Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      How to Mux Multi Videoes Using Gstreamer
+    </h1>
+    <div class="post-meta"><span title='2024-05-13 13:55:10 +0800 CST'>May 13, 2024</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%bd%bf%e7%94%a8-python-%e5%92%8c-gstreamer-%e5%b0%86%e4%b8%89%e4%b8%aa%e8%a7%86%e9%a2%91%e6%b5%81%e6%b7%b7%e6%b5%81" aria-label="使用 Python 和 GStreamer 将三个视频流混流">使用 Python 和 GStreamer 将三个视频流混流</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="使用-python-和-gstreamer-将三个视频流混流">使用 Python 和 GStreamer 将三个视频流混流<a hidden class="anchor" aria-hidden="true" href="#使用-python-和-gstreamer-将三个视频流混流">#</a></h1>
+<p>要使用 Python 和 GStreamer 将三个视频流混合成一个，您可以创建一个 GStreamer 管道，该管道包含用于处理和混合视频流的元素。以下是一个简单的代码示例，展示了如何将三个视频源混合到一个窗口中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> gi
+</span></span><span style="display:flex;"><span>gi<span style="color:#f92672">.</span>require_version(<span style="color:#e6db74">&#39;Gst&#39;</span>, <span style="color:#e6db74">&#39;1.0&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> gi.repository <span style="color:#f92672">import</span> Gst
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初始化GStreamer</span>
+</span></span><span style="display:flex;"><span>Gst<span style="color:#f92672">.</span>init(<span style="color:#66d9ef">None</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建GStreamer管道</span>
+</span></span><span style="display:flex;"><span>pipeline <span style="color:#f92672">=</span> Gst<span style="color:#f92672">.</span>Pipeline<span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#34;video-mixer&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建并配置混流器元素</span>
+</span></span><span style="display:flex;"><span>mixer <span style="color:#f92672">=</span> Gst<span style="color:#f92672">.</span>ElementFactory<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#34;videomixer&#34;</span>, <span style="color:#e6db74">&#34;mixer&#34;</span>)
+</span></span><span style="display:flex;"><span>pipeline<span style="color:#f92672">.</span>add(mixer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建视频源和窗口输出</span>
+</span></span><span style="display:flex;"><span>source1 <span style="color:#f92672">=</span> Gst<span style="color:#f92672">.</span>ElementFactory<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#34;videotestsrc&#34;</span>, <span style="color:#e6db74">&#34;source1&#34;</span>)
+</span></span><span style="display:flex;"><span>source2 <span style="color:#f92672">=</span> Gst<span style="color:#f92672">.</span>ElementFactory<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#34;videotestsrc&#34;</span>, <span style="color:#e6db74">&#34;source2&#34;</span>)
+</span></span><span style="display:flex;"><span>source3 <span style="color:#f92672">=</span> Gst<span style="color:#f92672">.</span>ElementFactory<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#34;videotestsrc&#34;</span>, <span style="color:#e6db74">&#34;source3&#34;</span>)
+</span></span><span style="display:flex;"><span>sink <span style="color:#f92672">=</span> Gst<span style="color:#f92672">.</span>ElementFactory<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#34;autovideosink&#34;</span>, <span style="color:#e6db74">&#34;sink&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将元素添加到管道</span>
+</span></span><span style="display:flex;"><span>pipeline<span style="color:#f92672">.</span>add(source1)
+</span></span><span style="display:flex;"><span>pipeline<span style="color:#f92672">.</span>add(source2)
+</span></span><span style="display:flex;"><span>pipeline<span style="color:#f92672">.</span>add(source3)
+</span></span><span style="display:flex;"><span>pipeline<span style="color:#f92672">.</span>add(sink)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将视频源链接到混流器</span>
+</span></span><span style="display:flex;"><span>source1<span style="color:#f92672">.</span>link(mixer)
+</span></span><span style="display:flex;"><span>source2<span style="color:#f92672">.</span>link(mixer)
+</span></span><span style="display:flex;"><span>source3<span style="color:#f92672">.</span>link(mixer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将混流器链接到窗口输出</span>
+</span></span><span style="display:flex;"><span>mixer<span style="color:#f92672">.</span>link(sink)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置视频源的属性（例如：模式、位置等）</span>
+</span></span><span style="display:flex;"><span>source1<span style="color:#f92672">.</span>set_property(<span style="color:#e6db74">&#34;pattern&#34;</span>, <span style="color:#ae81ff">0</span>) <span style="color:#75715e"># 设置测试图案</span>
+</span></span><span style="display:flex;"><span>source2<span style="color:#f92672">.</span>set_property(<span style="color:#e6db74">&#34;pattern&#34;</span>, <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># 设置另一个测试图案</span>
+</span></span><span style="display:flex;"><span>source3<span style="color:#f92672">.</span>set_property(<span style="color:#e6db74">&#34;pattern&#34;</span>, <span style="color:#ae81ff">0</span>) <span style="color:#75715e"># 设置测试图案</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 开始播放</span>
+</span></span><span style="display:flex;"><span>pipeline<span style="color:#f92672">.</span>set_state(Gst<span style="color:#f92672">.</span>State<span style="color:#f92672">.</span>PLAYING)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 等待EOS或错误</span>
+</span></span><span style="display:flex;"><span>bus <span style="color:#f92672">=</span> pipeline<span style="color:#f92672">.</span>get_bus()
+</span></span><span style="display:flex;"><span>msg <span style="color:#f92672">=</span> bus<span style="color:#f92672">.</span>timed_pop_filtered(Gst<span style="color:#f92672">.</span>CLOCK_TIME_NONE, Gst<span style="color:#f92672">.</span>MessageType<span style="color:#f92672">.</span>ERROR <span style="color:#f92672">|</span> Gst<span style="color:#f92672">.</span>MessageType<span style="color:#f92672">.</span>EOS)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 清理</span>
+</span></span><span style="display:flex;"><span>pipeline<span style="color:#f92672">.</span>set_state(Gst<span style="color:#f92672">.</span>State<span style="color:#f92672">.</span>NULL)
+</span></span></code></pre></div><p>这个代码示例创建了一个简单的 GStreamer 管道，其中包含三个 videotestsrc 视频源和一个 autovideosink 输出。视频源通过 videomixer 元素混合在一起，然后输出到窗口。您需要根据您的具体需求调整源和属性。</p>
+<p>请注意，这只是一个基础示例，实际应用中可能需要更复杂的设置，例如调整每个视频流的位置和大小，以及处理音频流。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+    
+    
+  </footer><div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="CharlieChen01/CharlieChen01.github.io"
+        data-repo-id="R_kgDOLvuSMQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOLvuSMc4Cexr_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+    </script>
+    
+</div>
+
+</article>
+    </main>
+    
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        {
+            let theme = 'light';
+            if (document.body.className.includes("dark")) {
+                document.body.classList.remove('dark');
+                localStorage.setItem("pref-theme", 'light');
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem("pref-theme", 'dark');
+            }
+            theme = 'dark';
+        }
+        localStorage.setItem("pref-theme", theme);
+        const message = {'giscus': {'setConfig': {'theme': theme}}};
+        const iframe = document.querySelector('iframe.giscus-frame');
+        iframe.contentWindow.postMessage(message, 'https://giscus.app');
+    })
+
+</script></body>
+
+</html>

@@ -2,7 +2,7 @@
 title = 'The Solidity Indexed Modifier'
 date = 2024-04-26T16:16:37+08:00
 tags = ['Modifier', 'Solidity']
-draft = true
+draft = false
 +++
 
 In Solidity, the indexed modifier is used to declare parameters in events (event) and indicates that the value of the parameter should be indexed. The purpose of the indexed modifier is to create a searchable index for event parameters, allowing for more efficient filtering and retrieval of events. When a parameter is declared as indexed, the Solidity compiler creates an index for that parameter in the event log.
