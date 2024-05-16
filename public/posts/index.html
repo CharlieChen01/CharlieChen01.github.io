@@ -126,6 +126,47 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">The Implement of Qos   2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用 Boost.Asio 库实现 QoS（服务质量）策略 在 C&#43;&#43;中使用 Boost.Asio 库来控制数据包的发送和接收，并实现 QoS（服务质量）策略，涉及到对 Asio 库的深入理解和应用。 以下是一个基本的指南，帮助你开始使用 Boost.Asio 来控制数据流：
+安装 Boost.Asio: 确保你的系统已经安装了 Boost 库和 Boost.Asio 组件。
+创建 io_context 对象: io_context 是 Asio 的中心，所有的异步操作都需要通过它来进行。
+创建套接字: 使用 tcp::socket 或 udp::socket 来创建一个套接字对象，这将用于网络通信。
+连接和监听: 对于客户端，使用 socket.connect()来建立连接。 对于服务器，使用 tcp::acceptor 来监听端口并接受连接。
+异步操作: 使用 async_read、async_write、async_connect 等函数来执行异步 I/O 操作。
+处理数据: 使用 boost::asio::buffer 来创建缓冲区，这将用于读取或写入数据。
+实现 QoS 策略: 根据你的 QoS 需求，你可能需要实现特定的数据包调度策略。 例如，你可以通过控制数据包的发送间隔或优先级来管理网络流量。
+错误处理: 使用错误码或异常来处理网络操作中可能出现的错误。
+运行 io_context: 调用 io_context.run()来启动事件循环，处理所有排队的异步事件。
+下面是一个简单的示例，展示如何使用 Boost.Asio 发送和接收数据：
+#include &lt;boost/asio.hpp&gt; #include &lt;iostream&gt; using boost::asio::ip::tcp; int main() { try { boost::asio::io_context io_context; // 创建一个socket tcp::socket socket(io_context); tcp::resolver resolver(io_context); boost::asio::connect(socket, resolver....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-16 15:28:08 +0800 CST'>May 16, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to The Implement of Qos   2" href="http://localhost:1313/posts/media/the-implement-of-qos---2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">The Implement of Qos - 1
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在 C&#43;&#43;中实现 QoS（Quality of Service，服务质量）策略 在 C&#43;&#43;中实现 QoS（Quality of Service，服务质量）策略通常涉及到网络通信和数据传输的可靠性、效率和性能。以下是一些常见的 QoS 策略及其在 C&#43;&#43;中的应用：
+历史记录（History）: 保留近期记录（Keep last）：缓存最多 N 条记录，可通过队列长度选项来配置。 保留所有记录（Keep all）：缓存所有记录，但受限于底层中间件可配置的最大资源。
+深度（Depth）: 队列深度（Size of the queue）：只能与 Keep last 配合使用。
+可靠性（Reliability）: 尽力的（Best effort）：尝试传输数据但不保证成功传输（当网络不稳定时可能丢失数据）。 可靠的（Reliable）：反复重传以保证数据成功传输。
+持续性（Durability）: 局部瞬态（Transient local）：发布器为晚连接（late-joining）的订阅器保留数据。 易变态（Volatile）：不保留任何数据。
+在 C&#43;&#43;中，你可以使用各种库和框架来实现这些 QoS 策略，例如 ROS2 中的 DDS（Data Distribution Service）实现，或者直接使用网络编程库如 Boost.Asio 来控制数据包的发送和接收行为。
+如果你正在使用 ROS2，你可以在你的发布器（Publisher）和订阅器（Subscriber）中指定 QoS 配置文件，来确保数据按照你的要求传输。</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-16 15:14:18 +0800 CST'>May 16, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to The Implement of Qos - 1" href="http://localhost:1313/posts/media/the-implement-of-qos---1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">How to Mux Multi Videoes Using Gstreamer
     </h2>
   </header>
@@ -249,32 +290,6 @@ static_cast: 用于基本数据类型之间的转换，如将 int 转换为 floa
   </div>
   <footer class="entry-footer"><span title='2024-05-07 10:37:11 +0800 CST'>May 7, 2024</span></footer>
   <a class="entry-link" aria-label="post link to Type Casts in C&#43;&#43;" href="http://localhost:1313/posts/c&#43;&#43;/type-casts-in-c&#43;&#43;/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Smart Pointers in C&#43;&#43;
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Let’s explore some examples of using std::unique_ptr, std::shared_ptr, and std::weak_ptr in C&#43;&#43;.
-std::unique_ptr: std::unique_ptr is designed for exclusive ownership of a dynamically allocated object. It ensures that there can be at most one unique_ptr pointing to any resource. When the unique_ptr is destroyed, the resource it points to is automatically reclaimed. You cannot make a copy of a unique_ptr, but you can move it using the new move semantics. Example:...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-07 10:12:55 +0800 CST'>May 7, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Smart Pointers in C&#43;&#43;" href="http://localhost:1313/posts/c&#43;&#43;/smart-pointers-in-c&#43;&#43;/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">How to Implementing a Group Call Feature for Multiple Users Using WebRTC
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>How to implementing a group call feature for multiple users using WebRTC involves managing multiple peer connections and ensuring efficient data transfer among all participants. Here’s a high-level overview of the steps you might take to enable group video calls for up to 8 users:
-Signaling Server: Set up a signaling server to coordinate communication between clients. This server will handle session initiation, participant management, and message passing between peers. Peer Connections: Each user will establish a peer connection with every other user in the group call....</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-28 16:50:59 +0800 CST'>April 28, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to How to Implementing a Group Call Feature for Multiple Users Using WebRTC" href="http://localhost:1313/posts/how-to-implementing-a-group-call-feature-for-multiple-users-using-webrtc/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
