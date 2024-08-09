@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mp4 on 👨‍🌾 Charlie Chen</title>
+    <link>http://localhost:1313/tags/mp4/</link>
+    <description>Recent content in Mp4 on 👨‍🌾 Charlie Chen</description>
+    <generator>Hugo -- 0.124.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 May 2024 16:49:05 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/mp4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Decode Mp4 Using C&#43;&#43; and Ffmepg</title>
+      <link>http://localhost:1313/posts/media/how-to-decode-mp4-using-c&#43;&#43;-and-ffmepg/</link>
+      <pubDate>Wed, 22 May 2024 16:49:05 +0800</pubDate>
+      <guid>http://localhost:1313/posts/media/how-to-decode-mp4-using-c&#43;&#43;-and-ffmepg/</guid>
+      <description>使用 FFmpeg 库来处理 MP4 编解码 初始化 FFmpeg 在你的 C++ 项目中，首先需要初始化 FFmpeg。你可以调用 av_register_all() 来注册 FFmpeg 所有的编解码器和格式。
+打开输入文件 使用 avformat_open_input() 打开 MP4 文件，获取 AVFormatContext 结构体。这个结构体包含了文件的流信息、编解码器等。
+查找视频流 遍历 AVFormatContext 中的流，找到视频流的索引。
+获取视频解码器 使用视频流索引，获取视频流的解码器上下文 AVCodecContext。你可以使用 avcodec_find_decoder() 来查找合适的解码器。
+打开解码器 使用 avcodec_open2() 打开解码器。
+读取帧 使用 av_read_frame() 读取视频帧。每一帧都包含在 AVPacket 中。
+解码帧 使用 avcodec_decode_video2() 解码视频帧。解码后的图像数据将存储在 AVFrame 中。
+编码帧 如果你需要重新编码帧，可以使用 avcodec_encode_video2() 将解码后的帧重新编码。
+保存帧 将编码后的帧保存到文件中。你可以使用 av_interleaved_write_frame() 将帧写入输出文件。
+清理资源 最后，别忘了释放所有分配的内存和关闭文件。
+以下是使用 C++， FFmpeg 处理 MP4 编解码示例代码：
+extern &amp;#34;C&amp;#34; { #include &amp;lt;libavformat/avformat.h&amp;gt; #include &amp;lt;libavcodec/avcodec.</description>
+    </item>
+  </channel>
+</rss>

@@ -123,6 +123,58 @@
 
 <article class="first-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">The Great Gatsby Long and Difficult Sentences
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>《了不起的盖茨比》 (The Great Gatsby) 是 F. Scott Fitzgerald 的经典小说，以其精美的语言和复杂的句子结构著称。以下是几个典型的长难句，并对其结构和含义进行讲解。
+1. 第一章中的长难句 原文： “In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since. ‘Whenever you feel like criticizing any one,’ he told me, ‘just remember that all the people in this world haven’t had the advantages that you’ve had.’”
+句子结构：这个句子由两部分组成。第一部分是“In my younger and more vulnerable years”（在我年轻且更容易受到伤害的岁月里），这部分是时间状语，说明了动作发生的时间。第二部分是主要句子“My father gave me some advice that I’ve been turning over in my mind ever since....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-09 20:51:04 +0800 CST'>August 9, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to The Great Gatsby Long and Difficult Sentences" href="http://localhost:1313/posts/learnenglish/the-great-gatsby-long-and-difficult-sentences/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">How to Decode Mp4 Using C&#43;&#43; and Ffmepg
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用 FFmpeg 库来处理 MP4 编解码 初始化 FFmpeg 在你的 C&#43;&#43; 项目中，首先需要初始化 FFmpeg。你可以调用 av_register_all() 来注册 FFmpeg 所有的编解码器和格式。
+打开输入文件 使用 avformat_open_input() 打开 MP4 文件，获取 AVFormatContext 结构体。这个结构体包含了文件的流信息、编解码器等。
+查找视频流 遍历 AVFormatContext 中的流，找到视频流的索引。
+获取视频解码器 使用视频流索引，获取视频流的解码器上下文 AVCodecContext。你可以使用 avcodec_find_decoder() 来查找合适的解码器。
+打开解码器 使用 avcodec_open2() 打开解码器。
+读取帧 使用 av_read_frame() 读取视频帧。每一帧都包含在 AVPacket 中。
+解码帧 使用 avcodec_decode_video2() 解码视频帧。解码后的图像数据将存储在 AVFrame 中。
+编码帧 如果你需要重新编码帧，可以使用 avcodec_encode_video2() 将解码后的帧重新编码。
+保存帧 将编码后的帧保存到文件中。你可以使用 av_interleaved_write_frame() 将帧写入输出文件。
+清理资源 最后，别忘了释放所有分配的内存和关闭文件。
+以下是使用 C&#43;&#43;， FFmpeg 处理 MP4 编解码示例代码：
+extern &#34;C&#34; { #include &lt;libavformat/avformat.h&gt; #include &lt;libavcodec/avcodec....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-22 16:49:05 +0800 CST'>May 22, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to How to Decode Mp4 Using C&#43;&#43; and Ffmepg" href="http://localhost:1313/posts/media/how-to-decode-mp4-using-c&#43;&#43;-and-ffmepg/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">The Event Loop of Node.js
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The Event Loop of Node.js The event loop is a fundamental concept in Node.js that enables non-blocking I/O operations, despite JavaScript being single-threaded. Here’s a high-level overview of how it works:
+Initialization: When Node.js starts, it initializes the event loop and processes the input script, which may include asynchronous API calls, timer scheduling, or process.nextTick() calls.
+Phases of the Event Loop:
+Timers: This phase executes callbacks scheduled by setTimeout() and setInterval()....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-18 16:55:21 +0800 CST'>May 18, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to The Event Loop of Node.js" href="http://localhost:1313/posts/node.js/the-event-loop-of-node.js/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">The Implement of Qos   2
     </h2>
   </header>
@@ -241,52 +293,6 @@ gst-launch-1.0 -v videotestsrc ! videocrop top=42 left=1 right=4 bottom=0 ! xima
   </div>
   <footer class="entry-footer"><span title='2024-05-07 16:46:46 +0800 CST'>May 7, 2024</span></footer>
   <a class="entry-link" aria-label="post link to About Gstreamer Misc(deinterlace Videorate Videocrop)" href="http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">About Video Processing and Hardware Acceleration in Gstreamer
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>关于 Gstreamer 中的视频处理与硬件加速 –节选自《LiveVideoStackCon2022 上海站大会， 英特尔加速计算系统与图形部工程师何俊彦，Gstreamer 的框架和特点，视频的模块化处理，以及其硬件加速的实现与应用案例》
-Basic Idea 这是 Gstreamer 中一个 element 的基本形式。两端的 pad 来负责输入和输出，而由当中的 element 来完成具体工作。比如一个 decoder，输入是 H264 的码流，输出则是 decoded 数据，也就是我们常说的视频帧，所以此处的 element 就可以实现为一个完整的 H264 的解码器。该解码器的实现可以是一个完整的内部实现，也可以封装已有的外部解码器来实现。比如，我们可以把 OpenH264 项目 build 成 library 的形式并适当封装，在此 element 中直接调用，从而实现该 H264 解码器插件的功能。
-我们可以发现，这里的输入输出格式是非常随意的，甚至输入可以是 video，输出是 audio，这就使插件的设计有了更大更灵活的空间。比如我们录取了一个视频，视频里的每一帧都是拍的某本书的一页，于是我们可以设计这样一个 pipeline，其中一个 element 将 video 转换成 text，然后连接另一个 element，其接受 text 输入，并用语音将其全部读出并输出 audio，从而完成了将整本书转成 audio 的功能。这些 element 的设计方式在 Gstreamer 是被完全允许的。当然，FFmpeg 也能完成上述功能，但在提交代码到社区和 upstream 过程中会有遇到很大的麻烦和挑战，因为这种 video 转 text 或者 text 转 audio 的模式，在 FFmpeg 中并没有现成的归类，也许需要你提出新的 filter 类型或新的模式。 这是更多 element 的类型，demuxer 对应 FFmpeg 里的 av input format，source element 对应于 FFmpeg 里的 URL，用来产生源输入，filter element 则对应于 FFmpeg 里的 filter。总的来说，这些内容有与 FFmpeg 相似的地方，但是会以 element 的形式进行管理，最后用 pipeline 将这些内容连接在一起，由第一个向最后一个推送数据。 在电子技术（特别是数字电路）中，数据选择器（英语：Data Selector），或称多路复用器（英语：multiplexer，简称：MUX）是一种可以从多个模拟或数字输入信号中选择一个信号进行输出的器件&gt; 1。一个有 2^n 输入端的数据选择器有 n 个可选择的输入-输出线路，可以通过控制端来选择其中一个信号作为输出 1。数据选择器主要用于增加一定量的时间和带宽内的可以通过网络发送的数据量 1。它使&gt; 多个信号共享一个设备或资源，例如一个模拟数字转换器或一个传输线，而不必给每一个输入信号配备一个设备。...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-07 15:28:15 +0800 CST'>May 7, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to About Video Processing and Hardware Acceleration in Gstreamer" href="http://localhost:1313/posts/media/about-video-processing-and-hardware-acceleration-in-gstreamer/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Diffrences and Similarities Between Gstreamer and FFmpeg
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>FFmpeg 和 GStreamer 都是开源的多媒体框架，它们在处理音频和视频方面有着广泛的应用。两者都提供了强大的工具和库，用于编码、解码、转码、流处理等多媒体操作。以下是对 FFmpeg 和 GStreamer 的深入对比和各自的应用场景：
-FFmpeg FFmpeg 是一个跨平台的解决方案，用于录制、转换数字音视频，并将其转换成不同的格式。它包含了 libavcodec ，这是一个用于多个项目音视频编解码的领先库。FFmpeg 在 Linux 平台下开发，但它可以在包括 Windows 在内的大多数操作系统中编译。
-特点：
-高性能：FFmpeg 以其极快的编解码速度而闻名。 广泛的格式支持：支持几乎所有已知的音视频格式。 命令行工具：提供了丰富的命令行工具，方便用户直接操作。 库支持：可以作为库嵌入到其他程序中，用于开发多媒体应用程序。 应用场景：
-视频转码：在需要将视频从一种格式转换为另一种格式时，FFmpeg 是首选工具。 流媒体服务器：作为流媒体服务器的一部分，用于实时转码和流处理。 视频编辑软件：许多视频编辑软件使用 FFmpeg 作为其编解码器库。 GStreamer GStreamer 是一个基于流水线的多媒体框架，用于创建流媒体应用程序。它的设计理念是基于插件的架构，允许开发者轻松地添加新的编解码器和功能。
-特点：
-模块化：GStreamer 的插件架构使得扩展功能变得简单。 管道模型：使用元素（elements）和管道（pipelines）来构建复杂的多媒体处理流程。 跨平台：支持多种操作系统，包括 Linux、Windows 和 macOS。 可编程性：提供了丰富的 API，适合开发复杂的应用程序。 应用场景：
-多媒体播放器：GStreamer 常用于开发多媒体播放器，因其灵活性和可扩展性。 实时音视频处理：在需要实时处理音视频数据的应用中，如视频会议系统。 嵌入式系统：由于其模块化设计，GStreamer 在资源受限的嵌入式系统中也有应用。 对比 性能：FFmpeg 在编解码性能上通常优于 GStreamer，特别是在处理特定格式时。 灵活性：GStreamer 的管道模型提供了更高的灵活性，适合构建复杂的处理流程。 易用性：FFmpeg 的命令行工具通常更易于使用，而 GStreamer 可能需要更多的编程知识。 社区与生态：两者都有活跃的社区，但 FFmpeg 的社区可能更大一些，而 GStreamer 在某些特定领域（如 Linux 桌面环境）有更深的根植。 选择 FFmpeg 还是 GStreamer 取决于具体的应用需求。如果需要快速、高效地处理音视频文件，FFmpeg 可能是更好的选择。如果项目需要高度的灵活性和可扩展性，GStreamer 可能更适合。在实际应用中，两者甚至可以结合使用，以发挥各自的优势。</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-07 14:45:14 +0800 CST'>May 7, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Diffrences and Similarities Between Gstreamer and FFmpeg" href="http://localhost:1313/posts/media/diffrences-and-similarities-between-gstreamer-and-ffmpeg/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Type Casts in C&#43;&#43;
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在 C&#43;&#43; 中，类型转换是一个重要的概念，尤其是在处理不同类型的对象和指针时。以下是四种 C&#43;&#43; 类型转换运算符的适用场景：
-static_cast: 用于基本数据类型之间的转换，如将 int 转换为 float。 用于类层次结构中向上转型（从派生类指针转换为基类指针）。 可以调用类型的显式转换构造函数或转换运算符。 示例： int i = 42; float f = static_cast&lt;float&gt;(i); // 将 int 转换为 float reinterpret_cast: 用于指针类型之间的转换，但不改变指针指向的内存内容。 可以将指针转换为足够大的整数类型，反之亦然。 通常用于底层操作，如操作硬件或进行与平台相关的调用。 示例： int* p = new int(42); void* v = reinterpret_cast&lt;void*&gt;(p); // 将 int* 转换为 void* const_cast: 用于添加或移除对象的 const 属性。 只能用于相同类型之间的转换，不能改变类型本身。 通常用于调用那些参数为非 const 的函数，而你有一个 const 对象。 示例： const int* cp = &amp;i; int* p = const_cast&lt;int*&gt;(cp); // 移除 const 属性 dynamic_cast: 主要用于类层次结构中的安全向下转型（从基类指针转换为派生类指针）。 在转换无效时会返回 nullptr，因此比 static_cast 更安全。 需要运行时类型信息（RTTI）支持。 示例： Base* b = new Derived(); Derived* d = dynamic_cast&lt;Derived*&gt;(b); // 安全向下转型 在选择使用哪种类型转换时，应考虑转换的安全性和目的。static_cast 是最常用的转换类型，适用于大多数非多态类型转换。reinterpret_cast 是最不安全的，应谨慎使用。const_cast 通常用于移除 const 属性以便于特定函数的调用。dynamic_cast 在多态类型转换中提供了类型安全检查，但性能开销较大 12345。...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-07 10:37:11 +0800 CST'>May 7, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to Type Casts in C&#43;&#43;" href="http://localhost:1313/posts/c&#43;&#43;/type-casts-in-c&#43;&#43;/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

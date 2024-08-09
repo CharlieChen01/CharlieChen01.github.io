@@ -126,6 +126,29 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">How to Decode Mp4 Using C&#43;&#43; and Ffmepg
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用 FFmpeg 库来处理 MP4 编解码 初始化 FFmpeg 在你的 C&#43;&#43; 项目中，首先需要初始化 FFmpeg。你可以调用 av_register_all() 来注册 FFmpeg 所有的编解码器和格式。
+打开输入文件 使用 avformat_open_input() 打开 MP4 文件，获取 AVFormatContext 结构体。这个结构体包含了文件的流信息、编解码器等。
+查找视频流 遍历 AVFormatContext 中的流，找到视频流的索引。
+获取视频解码器 使用视频流索引，获取视频流的解码器上下文 AVCodecContext。你可以使用 avcodec_find_decoder() 来查找合适的解码器。
+打开解码器 使用 avcodec_open2() 打开解码器。
+读取帧 使用 av_read_frame() 读取视频帧。每一帧都包含在 AVPacket 中。
+解码帧 使用 avcodec_decode_video2() 解码视频帧。解码后的图像数据将存储在 AVFrame 中。
+编码帧 如果你需要重新编码帧，可以使用 avcodec_encode_video2() 将解码后的帧重新编码。
+保存帧 将编码后的帧保存到文件中。你可以使用 av_interleaved_write_frame() 将帧写入输出文件。
+清理资源 最后，别忘了释放所有分配的内存和关闭文件。
+以下是使用 C&#43;&#43;， FFmpeg 处理 MP4 编解码示例代码：
+extern &#34;C&#34; { #include &lt;libavformat/avformat.h&gt; #include &lt;libavcodec/avcodec....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-22 16:49:05 +0800 CST'>May 22, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to How to Decode Mp4 Using C&#43;&#43; and Ffmepg" href="http://localhost:1313/posts/media/how-to-decode-mp4-using-c&#43;&#43;-and-ffmepg/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Diffrences and Similarities Between Gstreamer and FFmpeg
     </h2>
   </header>

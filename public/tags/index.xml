@@ -6,13 +6,34 @@
     <description>Recent content in Tags on 👨‍🌾 Charlie Chen</description>
     <generator>Hugo -- 0.124.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 May 2024 16:46:46 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 09 Aug 2024 20:51:04 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Gstreamer</title>
-      <link>http://localhost:1313/tags/gstreamer/</link>
+      <title>Learn English</title>
+      <link>http://localhost:1313/tags/learn-english/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/gstreamer/</guid>
+      <guid>http://localhost:1313/tags/learn-english/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Long and Difficult Sentences</title>
+      <link>http://localhost:1313/tags/long-and-difficult-sentences/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/long-and-difficult-sentences/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>The Great Gatsby</title>
+      <link>http://localhost:1313/tags/the-great-gatsby/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/the-great-gatsby/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://localhost:1313/tags/c&#43;&#43;/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     <item>
@@ -23,10 +44,59 @@
       <description></description>
     </item>
     <item>
-      <title>C&#43;&#43;</title>
-      <link>http://localhost:1313/tags/c&#43;&#43;/</link>
+      <title>Mp4</title>
+      <link>http://localhost:1313/tags/mp4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/c&#43;&#43;/</guid>
+      <guid>http://localhost:1313/tags/mp4/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Event Loop</title>
+      <link>http://localhost:1313/tags/event-loop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/event-loop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Node.js</title>
+      <link>http://localhost:1313/tags/node.js/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/node.js/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Boost</title>
+      <link>http://localhost:1313/tags/boost/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/boost/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>QoS</title>
+      <link>http://localhost:1313/tags/qos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/qos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>React</title>
+      <link>http://localhost:1313/tags/react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/react/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GStreamer</title>
+      <link>http://localhost:1313/tags/gstreamer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/gstreamer/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pipeline</title>
+      <link>http://localhost:1313/tags/pipeline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/pipeline/</guid>
       <description></description>
     </item>
     <item>

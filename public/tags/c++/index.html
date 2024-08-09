@@ -126,6 +126,52 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">How to Decode Mp4 Using C&#43;&#43; and Ffmepg
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用 FFmpeg 库来处理 MP4 编解码 初始化 FFmpeg 在你的 C&#43;&#43; 项目中，首先需要初始化 FFmpeg。你可以调用 av_register_all() 来注册 FFmpeg 所有的编解码器和格式。
+打开输入文件 使用 avformat_open_input() 打开 MP4 文件，获取 AVFormatContext 结构体。这个结构体包含了文件的流信息、编解码器等。
+查找视频流 遍历 AVFormatContext 中的流，找到视频流的索引。
+获取视频解码器 使用视频流索引，获取视频流的解码器上下文 AVCodecContext。你可以使用 avcodec_find_decoder() 来查找合适的解码器。
+打开解码器 使用 avcodec_open2() 打开解码器。
+读取帧 使用 av_read_frame() 读取视频帧。每一帧都包含在 AVPacket 中。
+解码帧 使用 avcodec_decode_video2() 解码视频帧。解码后的图像数据将存储在 AVFrame 中。
+编码帧 如果你需要重新编码帧，可以使用 avcodec_encode_video2() 将解码后的帧重新编码。
+保存帧 将编码后的帧保存到文件中。你可以使用 av_interleaved_write_frame() 将帧写入输出文件。
+清理资源 最后，别忘了释放所有分配的内存和关闭文件。
+以下是使用 C&#43;&#43;， FFmpeg 处理 MP4 编解码示例代码：
+extern &#34;C&#34; { #include &lt;libavformat/avformat.h&gt; #include &lt;libavcodec/avcodec....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-22 16:49:05 +0800 CST'>May 22, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to How to Decode Mp4 Using C&#43;&#43; and Ffmepg" href="http://localhost:1313/posts/media/how-to-decode-mp4-using-c&#43;&#43;-and-ffmepg/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">The Implement of Qos   2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用 Boost.Asio 库实现 QoS（服务质量）策略 在 C&#43;&#43;中使用 Boost.Asio 库来控制数据包的发送和接收，并实现 QoS（服务质量）策略，涉及到对 Asio 库的深入理解和应用。 以下是一个基本的指南，帮助你开始使用 Boost.Asio 来控制数据流：
+安装 Boost.Asio: 确保你的系统已经安装了 Boost 库和 Boost.Asio 组件。
+创建 io_context 对象: io_context 是 Asio 的中心，所有的异步操作都需要通过它来进行。
+创建套接字: 使用 tcp::socket 或 udp::socket 来创建一个套接字对象，这将用于网络通信。
+连接和监听: 对于客户端，使用 socket.connect()来建立连接。 对于服务器，使用 tcp::acceptor 来监听端口并接受连接。
+异步操作: 使用 async_read、async_write、async_connect 等函数来执行异步 I/O 操作。
+处理数据: 使用 boost::asio::buffer 来创建缓冲区，这将用于读取或写入数据。
+实现 QoS 策略: 根据你的 QoS 需求，你可能需要实现特定的数据包调度策略。 例如，你可以通过控制数据包的发送间隔或优先级来管理网络流量。
+错误处理: 使用错误码或异常来处理网络操作中可能出现的错误。
+运行 io_context: 调用 io_context.run()来启动事件循环，处理所有排队的异步事件。
+下面是一个简单的示例，展示如何使用 Boost.Asio 发送和接收数据：
+#include &lt;boost/asio.hpp&gt; #include &lt;iostream&gt; using boost::asio::ip::tcp; int main() { try { boost::asio::io_context io_context; // 创建一个socket tcp::socket socket(io_context); tcp::resolver resolver(io_context); boost::asio::connect(socket, resolver....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-16 15:28:08 +0800 CST'>May 16, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to The Implement of Qos   2" href="http://localhost:1313/posts/media/the-implement-of-qos---2/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Type Casts in C&#43;&#43;
     </h2>
   </header>

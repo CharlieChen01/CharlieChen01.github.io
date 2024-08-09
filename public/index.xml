@@ -6,8 +6,45 @@
     <description>Recent content on 👨‍🌾 Charlie Chen</description>
     <generator>Hugo -- 0.124.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 May 2024 15:28:08 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 09 Aug 2024 20:51:04 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Great Gatsby Long and Difficult Sentences</title>
+      <link>http://localhost:1313/posts/learnenglish/the-great-gatsby-long-and-difficult-sentences/</link>
+      <pubDate>Fri, 09 Aug 2024 20:51:04 +0800</pubDate>
+      <guid>http://localhost:1313/posts/learnenglish/the-great-gatsby-long-and-difficult-sentences/</guid>
+      <description>《了不起的盖茨比》 (The Great Gatsby) 是 F. Scott Fitzgerald 的经典小说，以其精美的语言和复杂的句子结构著称。以下是几个典型的长难句，并对其结构和含义进行讲解。
+1. 第一章中的长难句 原文： &amp;ldquo;In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since. ‘Whenever you feel like criticizing any one,’ he told me, ‘just remember that all the people in this world haven’t had the advantages that you’ve had.’&amp;rdquo;
+句子结构：这个句子由两部分组成。第一部分是“In my younger and more vulnerable years”（在我年轻且更容易受到伤害的岁月里），这部分是时间状语，说明了动作发生的时间。第二部分是主要句子“My father gave me some advice that I’ve been turning over in my mind ever since.</description>
+    </item>
+    <item>
+      <title>How to Decode Mp4 Using C&#43;&#43; and Ffmepg</title>
+      <link>http://localhost:1313/posts/media/how-to-decode-mp4-using-c&#43;&#43;-and-ffmepg/</link>
+      <pubDate>Wed, 22 May 2024 16:49:05 +0800</pubDate>
+      <guid>http://localhost:1313/posts/media/how-to-decode-mp4-using-c&#43;&#43;-and-ffmepg/</guid>
+      <description>使用 FFmpeg 库来处理 MP4 编解码 初始化 FFmpeg 在你的 C++ 项目中，首先需要初始化 FFmpeg。你可以调用 av_register_all() 来注册 FFmpeg 所有的编解码器和格式。
+打开输入文件 使用 avformat_open_input() 打开 MP4 文件，获取 AVFormatContext 结构体。这个结构体包含了文件的流信息、编解码器等。
+查找视频流 遍历 AVFormatContext 中的流，找到视频流的索引。
+获取视频解码器 使用视频流索引，获取视频流的解码器上下文 AVCodecContext。你可以使用 avcodec_find_decoder() 来查找合适的解码器。
+打开解码器 使用 avcodec_open2() 打开解码器。
+读取帧 使用 av_read_frame() 读取视频帧。每一帧都包含在 AVPacket 中。
+解码帧 使用 avcodec_decode_video2() 解码视频帧。解码后的图像数据将存储在 AVFrame 中。
+编码帧 如果你需要重新编码帧，可以使用 avcodec_encode_video2() 将解码后的帧重新编码。
+保存帧 将编码后的帧保存到文件中。你可以使用 av_interleaved_write_frame() 将帧写入输出文件。
+清理资源 最后，别忘了释放所有分配的内存和关闭文件。
+以下是使用 C++， FFmpeg 处理 MP4 编解码示例代码：
+extern &amp;#34;C&amp;#34; { #include &amp;lt;libavformat/avformat.h&amp;gt; #include &amp;lt;libavcodec/avcodec.</description>
+    </item>
+    <item>
+      <title>The Event Loop of Node.js</title>
+      <link>http://localhost:1313/posts/node.js/the-event-loop-of-node.js/</link>
+      <pubDate>Sat, 18 May 2024 16:55:21 +0800</pubDate>
+      <guid>http://localhost:1313/posts/node.js/the-event-loop-of-node.js/</guid>
+      <description>The Event Loop of Node.js The event loop is a fundamental concept in Node.js that enables non-blocking I/O operations, despite JavaScript being single-threaded. Here’s a high-level overview of how it works:
+Initialization: When Node.js starts, it initializes the event loop and processes the input script, which may include asynchronous API calls, timer scheduling, or process.nextTick() calls.
+Phases of the Event Loop:
+Timers: This phase executes callbacks scheduled by setTimeout() and setInterval().</description>
+    </item>
     <item>
       <title>The Implement of Qos   2</title>
       <link>http://localhost:1313/posts/media/the-implement-of-qos---2/</link>

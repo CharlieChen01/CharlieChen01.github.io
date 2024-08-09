@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Node.js on 👨‍🌾 Charlie Chen</title>
+    <link>http://localhost:1313/tags/node.js/</link>
+    <description>Recent content in Node.js on 👨‍🌾 Charlie Chen</description>
+    <generator>Hugo -- 0.124.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 May 2024 16:55:21 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Event Loop of Node.js</title>
+      <link>http://localhost:1313/posts/node.js/the-event-loop-of-node.js/</link>
+      <pubDate>Sat, 18 May 2024 16:55:21 +0800</pubDate>
+      <guid>http://localhost:1313/posts/node.js/the-event-loop-of-node.js/</guid>
+      <description>The Event Loop of Node.js The event loop is a fundamental concept in Node.js that enables non-blocking I/O operations, despite JavaScript being single-threaded. Here’s a high-level overview of how it works:
+Initialization: When Node.js starts, it initializes the event loop and processes the input script, which may include asynchronous API calls, timer scheduling, or process.nextTick() calls.
+Phases of the Event Loop:
+Timers: This phase executes callbacks scheduled by setTimeout() and setInterval().</description>
+    </item>
+  </channel>
+</rss>
