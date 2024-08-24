@@ -123,6 +123,40 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">GStreamer Pipeline for Playing WebM URLs
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>GStreamer 播放一个 WebM 视频文件 #include &lt;gst/gst.h&gt; int main (int argc, char *argv[]) { GstElement *pipeline; GstBus *bus; GstMessage *msg; /* Initialize GStreamer */ gst_init (&amp;argc, &amp;argv); /* Build the pipeline */ pipeline = gst_parse_launch (&#34;playbin uri=https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm&#34;, NULL); /* Start playing */ gst_element_set_state (pipeline, GST_STATE_PLAYING); /* Wait until error or EOS */ bus = gst_element_get_bus (pipeline); msg = gst_bus_timed_pop_filtered (bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_ERROR | GST_MESSAGE_EOS); /* Free resources */ if (msg != NULL) gst_message_unref (msg); gst_object_unref (bus); gst_element_set_state (pipeline, GST_STATE_NULL); gst_object_unref (pipeline); return 0; } 这段代码使用了 GStreamer 库来播放一个 WebM 视频文件。让我逐步解释一下每个部分的作用：...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-08 17:43:51 +0800 CST'>May 8, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to GStreamer Pipeline for Playing WebM URLs" href="http://localhost:1313/posts/media/gstreamer-pipeline-for-playing-webm-urls/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">About Gstreamer Misc(deinterlace Videorate Videocrop)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在 GStreamer 中，deinterlace（场帧处理）、videorate（帧率转换）和 videocrop（视频截取）是处理视频流的重要元素：
+deinterlace（场帧处理）: 功能: deinterlace 元素用于将交错视频帧转换为逐行扫描的视频帧。这个过程涉及到不同的算法，可以根据需要选择，以提供不同的质量和 CPU 使用率 1。 使用示例:
+gst-launch-1.0 -v filesrc location=/path/to/file ! decodebin ! videoconvert ! deinterlace ! videoconvert ! autovideosink
+这个管道使用默认的去交错选项去交错视频文件。
+videorate（帧率转换）: 功能: videorate 元素接收一个带有时间戳的视频帧流，并产生一个与源端口帧率匹配的完美流。它通过丢弃和复制帧来进行校正，目前还没有使用复杂算法来插值帧 2。 使用示例:
+gst-launch-1.0 -v uridecodebin uri=file:///path/to/video.ogg ! videoconvert ! videoscale ! videorate ! video/x-raw,framerate=15/1 ! autovideosink
+这个管道解码视频文件并将帧率调整为 15fps 再播放。
+videocrop（视频截取）: 功能: videocrop 元素用于裁剪视频帧，即它可以移除图像左侧、右侧、顶部或底部的部分，并输出一个比输入图像小的图像，去除了边缘不需要的部分 3。 使用示例:
+gst-launch-1.0 -v videotestsrc ! videocrop top=42 left=1 right=4 bottom=0 ! ximagesink
+这个管道从测试视频源裁剪出一部分并显示。
+这些元素在视频处理中非常有用，可以用于视频编辑、格式转换或流媒体传输等多种场景。</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-05-07 16:46:46 +0800 CST'>May 7, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to About Gstreamer Misc(deinterlace Videorate Videocrop)" href="http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">About Video Processing and Hardware Acceleration in Gstreamer
     </h2>
   </header>
@@ -232,23 +266,12 @@ ERC20 tokens are fungible. This means that each token is identical and interch
   <footer class="entry-footer"><span title='2024-04-24 15:30:01 +0800 CST'>April 24, 2024</span></footer>
   <a class="entry-link" aria-label="post link to Differences Between ERC 20 and ERC 721" href="http://localhost:1313/posts/differences-between-erc-20-and-erc-721/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">How to Implement the PoW and PoS Algorithms in Go
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>How to implement Proof of Work (PoW) and Proof of Stake (PoS) algorithms for blockchain in Go? Here are the steps:
-Define the block structure: Let’s start by creating a new Go project and importing all the necessary packages to build our blockchain. Create a file named blockchain.go and import all the dependencies you need by saving the following code in it. First, you need to define the data structure of the block, including the Index, Timestamp, PrevHash, Data, Nonce, Difficulty, and Hash....</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-04-18 14:47:03 +0800 CST'>April 18, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to How to Implement the PoW and PoS Algorithms in Go" href="http://localhost:1313/posts/how-to-implement-the-pow-and-pos-algorithms-in-go/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="http://localhost:1313/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/3/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>

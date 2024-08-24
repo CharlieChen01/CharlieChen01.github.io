@@ -126,13 +126,37 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Disillusionment of the American Dream
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Is the theme of the “American Dream’s demise” in The Great Gatsby an isolated case or a widespread phenomenon in real American society? The theme of the “disillusionment of the American Dream” in The Great Gatsby is not an isolated case but rather a widespread phenomenon in real American society. While the American Dream represents the ideal of achieving wealth, success, and happiness through personal effort, many factors in reality make this dream difficult to attain or only accessible to certain groups....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-24 18:48:22 +0800 CST'>August 24, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Disillusionment of the American Dream" href="http://localhost:1313/posts/learnenglish/disillusionment-of-the-american-dream/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">The Collision Between Gatsbys Ideal and Reality
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The collision between Gatsby’s ideal and reality–Expand on this sentence in one paragraph It was this night that he told me the strange story of his youth with Dan Cody—told it to me because ‘Jay Gatsby’ had broken up like glass against Tom’s hard malice and the long secret extravaganza was played out.
+This sentence reflects one of the core conflicts in The Great Gatsby: the collision between Gatsby’s ideals and reality....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-24 18:21:07 +0800 CST'>August 24, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to The Collision Between Gatsbys Ideal and Reality" href="http://localhost:1313/posts/learnenglish/the-collision-between-gatsbys-ideal-and-reality/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">The Great Gatsby Long and Difficult Sentences
     </h2>
   </header>
   <div class="entry-content">
     <p>《了不起的盖茨比》 (The Great Gatsby) 是 F. Scott Fitzgerald 的经典小说，以其精美的语言和复杂的句子结构著称。以下是几个典型的长难句，并对其结构和含义进行讲解。
-1. 第一章中的长难句 原文： “In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since. ‘Whenever you feel like criticizing &gt; any one,’ he told me, ‘just remember that all the people in this world haven’t had the advantages that you’ve had.’”
-讲解：
+1. 第一章中的长难句 原文： “In my younger and more vulnerable years my father gave me some advice that I’ve been turning over in my mind ever since. ‘Whenever you feel like criticizing any one,’ he told me, ‘just remember that all the people in this world haven’t had the advantages that you’ve had.’”
 句子结构：这个句子由两部分组成。第一部分是“In my younger and more vulnerable years”（在我年轻且更容易受到伤害的岁月里），这部分是时间状语，说明了动作发生的时间。第二部分是主要句子“My father gave me some advice that I’ve been turning over in my mind ever since....</p>
   </div>
   <footer class="entry-footer"><span title='2024-08-09 20:51:04 +0800 CST'>August 9, 2024</span></footer>
@@ -263,40 +287,6 @@ import React, { useState } from &#34;react&#34;; const Quiz = ({ question, optio
   </div>
   <footer class="entry-footer"><span title='2024-05-11 20:08:10 +0800 CST'>May 11, 2024</span></footer>
   <a class="entry-link" aria-label="post link to Build Quiz Function Using React" href="http://localhost:1313/posts/react/build-quiz-function-using-react/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">GStreamer Pipeline for Playing WebM URLs
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>GStreamer 播放一个 WebM 视频文件 #include &lt;gst/gst.h&gt; int main (int argc, char *argv[]) { GstElement *pipeline; GstBus *bus; GstMessage *msg; /* Initialize GStreamer */ gst_init (&amp;argc, &amp;argv); /* Build the pipeline */ pipeline = gst_parse_launch (&#34;playbin uri=https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm&#34;, NULL); /* Start playing */ gst_element_set_state (pipeline, GST_STATE_PLAYING); /* Wait until error or EOS */ bus = gst_element_get_bus (pipeline); msg = gst_bus_timed_pop_filtered (bus, GST_CLOCK_TIME_NONE, GST_MESSAGE_ERROR | GST_MESSAGE_EOS); /* Free resources */ if (msg != NULL) gst_message_unref (msg); gst_object_unref (bus); gst_element_set_state (pipeline, GST_STATE_NULL); gst_object_unref (pipeline); return 0; } 这段代码使用了 GStreamer 库来播放一个 WebM 视频文件。让我逐步解释一下每个部分的作用：...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-08 17:43:51 +0800 CST'>May 8, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to GStreamer Pipeline for Playing WebM URLs" href="http://localhost:1313/posts/media/gstreamer-pipeline-for-playing-webm-urls/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">About Gstreamer Misc(deinterlace Videorate Videocrop)
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>在 GStreamer 中，deinterlace（场帧处理）、videorate（帧率转换）和 videocrop（视频截取）是处理视频流的重要元素：
-deinterlace（场帧处理）: 功能: deinterlace 元素用于将交错视频帧转换为逐行扫描的视频帧。这个过程涉及到不同的算法，可以根据需要选择，以提供不同的质量和 CPU 使用率 1。 使用示例:
-gst-launch-1.0 -v filesrc location=/path/to/file ! decodebin ! videoconvert ! deinterlace ! videoconvert ! autovideosink
-这个管道使用默认的去交错选项去交错视频文件。
-videorate（帧率转换）: 功能: videorate 元素接收一个带有时间戳的视频帧流，并产生一个与源端口帧率匹配的完美流。它通过丢弃和复制帧来进行校正，目前还没有使用复杂算法来插值帧 2。 使用示例:
-gst-launch-1.0 -v uridecodebin uri=file:///path/to/video.ogg ! videoconvert ! videoscale ! videorate ! video/x-raw,framerate=15/1 ! autovideosink
-这个管道解码视频文件并将帧率调整为 15fps 再播放。
-videocrop（视频截取）: 功能: videocrop 元素用于裁剪视频帧，即它可以移除图像左侧、右侧、顶部或底部的部分，并输出一个比输入图像小的图像，去除了边缘不需要的部分 3。 使用示例:
-gst-launch-1.0 -v videotestsrc ! videocrop top=42 left=1 right=4 bottom=0 ! ximagesink
-这个管道从测试视频源裁剪出一部分并显示。
-这些元素在视频处理中非常有用，可以用于视频编辑、格式转换或流媒体传输等多种场景。</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-05-07 16:46:46 +0800 CST'>May 7, 2024</span></footer>
-  <a class="entry-link" aria-label="post link to About Gstreamer Misc(deinterlace Videorate Videocrop)" href="http://localhost:1313/posts/media/about-gstreamer-miscdeinterlace-videorate-videocrop/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
